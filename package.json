@@ -5,17 +5,19 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build && node scripts/static-routes.mjs",
+    "dev": "node scripts/generate-icons.mjs && vite --host 0.0.0.0",
+    "build": "node scripts/generate-icons.mjs && vite build && node scripts/static-routes.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "lint": "oxlint --type-aware --type-check",
     "typecheck": "tsrs --noEmit",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
+    "@tabler/icons-react": "^3.52.0",
     "@tailwindcss/vite": "^4.3.5",
     "@tanstack/markdown": "^1.2.0",
     "@tanstack/react-router": "^1.170.46",

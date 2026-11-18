@@ -1,37 +1,57 @@
+import { ApiAccess } from './api-access';
 import { Page, SourceLink } from './shared';
+import { Cite } from './study-components';
+import { SubscriptionValue } from './subscription-value';
+
 export default function Access() {
   return (
     <Page
       kind="access"
-      title="Subscription access"
-      intro="GPT-6.2 Sol and Astra are offered in ChatGPT Work and Codex, not regular Chat."
+      title="Access & pricing"
+      intro="Where to use Sol and Astra, what draws down your allowance, and how to compare the cost of finished work."
     >
-      <div className="atlas-access-layout">
-        <section className="atlas-plan">
-          <h2>Eligible plans</h2>
+      <nav className="study-index" aria-label="On this page">
+        <a href="#subscription">Subscription</a>
+        <a href="#value">The $200 comparison</a>
+        <a href="#api">API pricing</a>
+        <a href="#daybreak">Daybreak</a>
+      </nav>
+      <section id="subscription" className="atlas-access-layout">
+        <div className="atlas-plan">
+          <h2>Subscription access</h2>
           <p>
-            Plus, Pro, Business, Enterprise and Edu. Rollout, region and workspace permissions can
-            affect what appears in your account.
+            Choose GPT-6.2 Sol or Astra in the model picker in ChatGPT Work or Codex, not regular
+            Chat. Update the app and check workspace permissions if neither appears.
           </p>
-          <SourceLink id="access">Check current subscription details</SourceLink>
-        </section>
+          <SourceLink id="access">Model access and rollout</SourceLink>
+        </div>
         <div className="atlas-access-steps">
           <section>
-            <h2>Find the models</h2>
+            <h2>Plans and allowances</h2>
             <p>
-              Open the model picker in Work or Codex. If the options are missing in a managed
-              workspace, check with its administrator.
+              Rollout covers Plus, Pro, Business, Enterprise, Edu and eligible Healthcare and
+              FedRAMP workspaces. Work and Codex share an allowance. Longer inputs, more output,
+              higher reasoning effort and speed settings change how quickly you use it.
             </p>
+            <Cite href="https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers">
+              Pro tiers: $100, $200 and $500
+            </Cite>
           </section>
           <section>
-            <h2>Check your allowance</h2>
+            <h2>Ultrafast is a separate choice</h2>
             <p>
-              Usage depends on the task and settings. Faster modes have separate eligibility and
-              allowance rules. Check your account before starting a long run.
+              Pro $200 includes Sol Ultrafast in Codex, but not Astra Ultrafast. Pro $500 can use
+              either; both draw included allowance at 6× Standard. Plus, Pro $100 and Business do
+              not include Ultrafast. Eligible Enterprise and Edu organizations use workspace
+              credits.
             </p>
+            <SourceLink id="access">Speed and credit rules</SourceLink>
           </section>
         </div>
-      </div>
+      </section>
+      <SubscriptionValue />
+      <ApiAccess />
+      <p className="study-date">US pricing and plan rules checked November 18, 2026.</p>
     </Page>
   );
 }

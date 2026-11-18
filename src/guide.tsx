@@ -6,6 +6,8 @@ import {
   type LegacyColumnDef,
 } from '@tanstack/react-table/legacy';
 
+import { Benchmarks } from './benchmarks';
+import { UiIcon } from './design/icons';
 import { Page, SourceLink } from './shared';
 const comparison = [
   {
@@ -112,12 +114,13 @@ export default function Guide() {
           </table>
         </section>
       </section>
+      <Benchmarks />
       <div className="atlas-next">
         <Link to="/field-notes">
-          Read the field notes <span>↗</span>
+          Read the field notes <UiIcon name="arrow-up-right" />
         </Link>
         <Link to="/access">
-          Find your access <span>↗</span>
+          Find your access <UiIcon name="arrow-up-right" />
         </Link>
       </div>
     </Page>

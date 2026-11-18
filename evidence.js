@@ -116,6 +116,97 @@ export const sources = [
       'Only the publicly accessible introduction was reviewed. The full article is subscriber-only.',
     verification: 'Read the publisher’s public introduction; did not bypass its paywall.',
   },
+  {
+    id: 'pricing',
+    author: 'OpenAI',
+    type: 'API documentation',
+    date: '2026-11-18',
+    title: 'GPT-6.2 model rates and processing tiers',
+    url: 'https://developers.openai.com/api/docs/pricing',
+    summary:
+      'Input, cache read and write, output, service-speed and long-context pricing for both models.',
+    caveat:
+      'API token rates are not subscription limits or a measure of inference cost. Some request types have extra costs.',
+    verification:
+      'Checked the pricing table against both model cards and the launch dates of the Ultrafast rates.',
+  },
+  {
+    id: 'daybreak',
+    author: 'OpenAI Help Center',
+    type: 'Program eligibility',
+    date: '2026-11-18',
+    title: 'Daybreak Blue and Red eligibility',
+    url: 'https://help.openai.com/en/articles/20001259-troubleshooting-openai-daybreak',
+    summary:
+      '6.2 models retain standard safeguards with Blue. Reduced refusals require enabled Red approval and access to the model.',
+    caveat:
+      'Approval and enablement are separate. Earlier model-specific rules are not necessarily applicable to 6.2.',
+    verification: 'Read the model-specific eligibility section.',
+  },
+  {
+    id: 'ultra',
+    author: 'Anthropic',
+    type: 'Official plan documentation',
+    date: '2026-11-18',
+    title: 'What is the Ultra plan?',
+    url: 'https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan',
+    summary: 'Claude Ultra’s weekly usage, verification conditions and Fable-specific limits.',
+    caveat:
+      'Plan multiples use Anthropic’s own baseline; they do not convert into OpenAI quota or finished tasks.',
+    verification: 'Checked plan rules and separate monthly credit documentation.',
+  },
+  {
+    id: 'semianalysis',
+    author: 'SemiAnalysis',
+    type: 'Independent estimate',
+    date: '2026-10-05',
+    title: 'Subscription API-equivalent value, October 2026',
+    url: 'https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x',
+    summary:
+      'Estimated the API list-price value of exhausting different model allowances in then-current paid subscriptions.',
+    caveat:
+      'Pre-dates the October 29 quota revision and the 6.2 launch. Model caps differ; this is not the cash value of the subscription.',
+    verification:
+      'Checked the original October 5 report against the subsequent OpenAI Pro plan update.',
+  },
+  {
+    id: 'mypriors',
+    author: 'MyPriors',
+    type: 'Independent estimate',
+    date: '2026-11-18',
+    title: 'GPT-6.2 Astra subscription assumptions',
+    url: 'https://mypriors.com/models/gpt-6.2-astra?r=aa',
+    summary:
+      'Models a blended token price using an assumed cache-heavy workload and a prior-generation subscription calibration.',
+    caveat:
+      'It does not independently measure current 6.2 weekly tasks, conversion from tokens to quota, or completion rate.',
+    verification: 'Inspected the model-specific entry and its assumptions in the interactive tool.',
+  },
+  {
+    id: 'frontiercode',
+    author: 'Cognition',
+    type: 'Benchmark author',
+    date: '2026-11-18',
+    title: 'FrontierCode 2.0 results',
+    url: 'https://cognition.com/frontiercode',
+    summary: 'Evaluates code changes against maintainers’ requirements with weighted rubrics.',
+    caveat:
+      'The evaluator also builds competing agents. Scores are weighted quality measurements, not simple completion rates.',
+    verification: 'Checked model generation, effort, harness and metric in the published results.',
+  },
+  {
+    id: 'terminal-science',
+    author: 'Artificial Analysis',
+    type: 'Independent benchmark',
+    date: '2026-11-18',
+    title: 'Terminal-Bench-Science',
+    url: 'https://artificialanalysis.ai/evaluations/terminal-bench-science',
+    summary:
+      'Tests terminal-based scientific workflows with a common agent harness and published grading criteria.',
+    caveat:
+      'Results reflect the exact harness and reasoning effort, not weekly tasks in a subscription.',
+    verification: 'Cross-checked the evaluation methodology and model comparison entries.',
+  },
 ];
 
 export const lensNotes = [
@@ -145,14 +236,6 @@ export const lensNotes = [
     basis: 'Editorial synthesis of the named sources, not an independent benchmark.',
     sourceIds: ['theo', 'dan', 'matt', 'tibo', 'system-card'],
   },
-];
-
-export const fieldTest = [
-  'Use the same brief, files and acceptance criteria for both models.',
-  'Choose a small real task with an outcome you can check.',
-  'Track useful completion, corrections, elapsed time and allowance used.',
-  'Ask what remains unfinished and verify the answer against the artifact.',
-  'Retest after updates. Record the model, date and settings.',
 ];
 
 export const editorialNote =

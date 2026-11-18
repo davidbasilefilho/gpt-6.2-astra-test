@@ -21,10 +21,10 @@ bun run build
 ## Routes
 
 - `/`: interactive editorial landing page
-- `/compare`: positioning and practical model comparison
-- `/field-notes`: attributed launch-period reports, system-card context and a local checklist
+- `/compare`: positioning, independently run benchmarks and coverage gaps
+- `/field-notes`: attributed launch-period reports, and detailed system-card context
 - `/sources`: searchable/filterable evidence with expandable verification notes
-- `/access`: subscription-oriented Work and Codex access guide
+- `/access`: subscription limits, $200 plan comparisons, task-value worksheets, API rates and Daybreak eligibility
 
 The build emits dedicated `index.html` files for all four secondary routes plus a `404.html` fallback, so direct links do not depend solely on an SPA rewrite. Route bodies are lazy-loaded and native navigation links preload their route on pointer or keyboard intent. The application adds client navigation to native landing links while keeping URLs shareable. The public audience is configured through Sites, not this code.
 
@@ -36,7 +36,7 @@ The build emits dedicated `index.html` files for all four secondary routes plus 
 - TanStack Table **9.3.1**: official legacy adapter for a small semantic comparison table. No artificial sorting controls on a four-row comparison.
 - Tailwind CSS **4.3.5** plus a reusable custom token-based editorial system.
 - Base UI Accordion provides accessible source disclosures.
-- Motion handles restrained route entry; React `Activity` preserves a hidden checklist, and React `ViewTransition` animates that change where supported.
+- Motion handles restrained route entry; React `Activity` preserves hidden workload inputs when comparing plans, and React `ViewTransition` animates that change where supported.
 - TanStack Markdown renders curated editorial notes using its React adapter, `@tanstack/markdown/react`. See the [official rendering guide](https://tanstack.com/markdown/latest/docs/guides/react).
 - OXLint **1.94.0** with `--type-aware --type-check` and `oxlint-tsgolint`; TSRS **0.25.0-ts7.1.0-beta** for independent typechecking.
 - OXFmt **0.79.0**: import sorting, package metadata sorting and Tailwind class sorting, with 100-column single-quoted formatting.
@@ -45,15 +45,15 @@ Version details are recorded in `package.json` and `bun.lock`; do not silently r
 
 ## Accessibility and motion
 
-Semantic sections, keyboard-accessible links, visible focus indicators, labeled controls, contrast-aware theme tokens and a horizontally keyboard-scrollable comparison table are intentional. System/light/dark preference and reduced-motion behavior are supported. Two celestial bodies open the same popovers with hover, keyboard focus or tap. Orbital motion is autonomous; reduced motion freezes it. See [the design system](docs/design.md) for typography, square surfaces, shared controls, motion and disclosure behavior. The checklist is session-local and is not sent anywhere.
+Semantic sections, keyboard-accessible links, visible focus indicators, labeled controls, contrast-aware theme tokens and a horizontally keyboard-scrollable comparison table are intentional. System/light/dark preference and reduced-motion behavior are supported. Celestial bodies and constellation stars have hover, keyboard and tap access to their associated popovers. Orbital motion is autonomous; reduced motion freezes it. See [the design system](docs/design.md) for typography, square surfaces, shared controls, motion and disclosure behavior. Worksheet entries stay local to the page and are not sent anywhere.
 
 ## Evidence maintenance
 
-`evidence.js` is the editorial source of truth. Each entry includes author, date, canonical URL, summary, caveat and how it was verified. Read the full relevant source before updating it. Do not convert reported experiences into established general facts. Direct X access was blocked during this research; attachments and public mirrors are disclosed per entry. Subscription prices and usage limits are deliberately not frozen into a launch-day table.
+`evidence.js` is the editorial source of truth. Each entry includes author, date, canonical URL, summary, caveat and how it was verified. Read the full relevant source before updating it. Do not convert reported experiences into established general facts. Direct X access was blocked during this research; attachments and public mirrors are disclosed per entry. The rate tables are a dated snapshot; recheck the linked model, plan and Daybreak documentation when rates change. New quantitative evidence is cited at point of use.
 
 ## Validation
 
-The Node test suite checks source integrity, citation references, exact source-filter behavior and route/accessibility contracts. It is **not** a substitute for browser interaction testing. Check desktop and mobile, both color schemes, keyboard operation, reduced motion, direct route entry, back/forward navigation, source filtering and disclosures, the field checklist and the celestial interaction before release. Keep user-requested screenshots and short video artifacts separate from runtime assets.
+The Node test suite checks source integrity, citation references, exact source-filter behavior and route/accessibility contracts. It is **not** a substitute for browser interaction testing. Check desktop and mobile, both color schemes, keyboard operation, reduced motion, direct route entry, back/forward navigation, source filtering and disclosures, the workload worksheets and the celestial interaction before release. Keep user-requested screenshots and short video artifacts separate from runtime assets.
 
 ## License
 

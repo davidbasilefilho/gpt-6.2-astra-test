@@ -1,24 +1,13 @@
-import { motion, useReducedMotion } from 'motion/react';
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 import { sources } from '../evidence.js';
-import { timing } from './design/motion';
+import { watchEntrances } from './design/entrances';
+import { UiIcon } from './design/icons';
 
 export type Source = (typeof sources)[number];
 export const sourceById = Object.fromEntries(sources.map((source) => [source.id, source]));
 export function ExternalMark() {
-  return (
-    <svg
-      className="ds-external"
-      viewBox="0 0 16 16"
-      aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.65"
-    >
-      <path d="M3 13L12 4M4 4h8v8" />
-    </svg>
-  );
+  return <UiIcon name="arrow-up-right" className="ds-external" />;
 }
 export function SourceLink({ id, children }: { id: string; children?: ReactNode }) {
   const source = sourceById[id];
@@ -41,17 +30,15 @@ export function Page({
   intro?: ReactNode;
   children: ReactNode;
 }) {
-  const reduced = useReducedMotion();
+  const scope = useRef<HTMLElement>(null);
+  useEffect(() => {
+    return scope.current ? watchEntrances(scope.current) : undefined;
+  }, []);
   useEffect(() => {
     document.querySelector<HTMLElement>('.atlas-page h1')?.focus({ preventScroll: true });
   }, []);
   return (
-    <motion.main
-      className={`atlas-page frame atlas-sheet-${kind}`}
-      initial={reduced ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: reduced ? 0 : timing.enter }}
-    >
+    <main ref={scope} className={`atlas-page frame atlas-sheet-${kind}`}>
       <header className="atlas-page-heading">
         <div>
           <h1 tabIndex={-1}>{title}</h1>
@@ -64,6 +51,6 @@ export function Page({
         ) : null}
       </header>
       {children}
-    </motion.main>
+    </main>
   );
 }

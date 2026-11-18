@@ -7,17 +7,23 @@ import {
   RouterProvider,
   useRouterState,
 } from '@tanstack/react-router';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { watchEntrances } from './design/entrances';
+import { bindRouteOrigins } from './design/origins';
+import { AppearanceTooltip } from './design/tooltip';
+
 import './routes.css';
+bindRouteOrigins();
 let clientReady = false;
 function RouteShell() {
   const path = useRouterState({
-    select: (state) => state.location.pathname.replace(/\/$/, '') || '/',
+    select: (state) =>
+      (state.matches.at(-1)?.pathname ?? state.location.pathname).replace(/\/$/, '') || '/',
   });
   const isHome = path === '/';
-  useEffect(() => {
+  useLayoutEffect(() => {
     clientReady = true;
     const landing = document.getElementById('landing');
     if (landing) landing.hidden = !isHome;
@@ -27,8 +33,11 @@ function RouteShell() {
       else link.removeAttribute('aria-current');
     });
     document.title = `${path === '/compare' ? 'The guide' : path === '/field-notes' ? 'Field notes' : path === '/sources' ? 'Sources' : path === '/access' ? 'Access' : 'Sol & Astra'} · The Field Atlas`;
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    if (isHome) document.getElementById('content')?.focus({ preventScroll: true });
+    if (isHome) {
+      document.getElementById('content')?.focus({ preventScroll: true });
+      if (landing) return watchEntrances(landing);
+    }
+    return undefined;
   }, [isHome, path]);
   return <Outlet />;
 }
@@ -111,7 +120,13 @@ document.addEventListener('click', (event) => {
   void router.navigate({ to: url.pathname });
 });
 const mount = document.getElementById('atlas-react-root');
-if (mount) createRoot(mount).render(<RouterProvider router={router} />);
+if (mount)
+  createRoot(mount).render(
+    <>
+      <RouterProvider router={router} />
+      <AppearanceTooltip />
+    </>,
+  );
 
 function preloadNativeLink(event: Event) {
   if (!(event.target instanceof Element)) return;

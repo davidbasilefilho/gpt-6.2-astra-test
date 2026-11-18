@@ -2,7 +2,8 @@
 export function filterSources(sources, kind = 'All', query = '') {
   const needle = query.trim().toLocaleLowerCase('en');
   return sources.filter((source) => {
-    const official = source.author.startsWith('OpenAI') || source.id === 'tibo';
+    const official =
+      source.author.startsWith('OpenAI') || source.author === 'Anthropic' || source.id === 'tibo';
     const matchesKind = kind === 'All' || (kind === 'Official' ? official : !official);
     return (
       matchesKind &&

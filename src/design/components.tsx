@@ -20,16 +20,19 @@ export function DisclosureMark({ open }: { open: boolean }) {
     <motion.svg
       className="ds-disclosure-mark"
       aria-hidden="true"
-      viewBox="0 0 16 16"
+      viewBox="0 0 24 24"
       width="16"
       height="16"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.65"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      focusable="false"
       animate={{ rotate: open ? 45 : 0 }}
       transition={reduced ? { duration: 0 } : controlSpring}
     >
-      <path d="M2 8h12M8 2v12" />
+      <use href="/assets/ui-icons.svg#plus" />
     </motion.svg>
   );
 }

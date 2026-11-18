@@ -1,12 +1,12 @@
 :root {
-  --paper: #fbf7ee;
-  --ink: #302433;
-  --muted: #605662;
-  --rule: #b6aab2;
-  --accent: #a63c20;
-  --wash: #eae3ef;
-  --star: #49447c;
-  --btn: #aa4023;
+  --paper: #ded5c5;
+  --ink: #302834;
+  --muted: #534a52;
+  --rule: #9a8b92;
+  --accent: #853921;
+  --wash: #c6bfcd;
+  --star: #49436f;
+  --btn: #873a22;
   --btn-ink: #fff9f2;
   --serif: Newsreader, Georgia, serif;
   --sans: 'Atkinson Next', Arial, sans-serif;
@@ -187,4 +187,46 @@
 ) {
   -webkit-user-select: text;
   user-select: text;
+}
+:root {
+  --spread-ground: #5a5263;
+  --spread-print: #fff2df;
+  --spread-soft: #efe3d5;
+  --spread-rule: #9f92a0;
+  --film-dark-grain: url('/assets/grain-night.png?v=2');
+  --film-grain: url('/assets/grain-paper.png?v=2');
+  --grain-size: 162px 162px;
+  --plate-hatch: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+:root[data-palette='dark'],
+:root[data-theme='dark'] {
+  --spread-ground: var(--wash);
+  --spread-print: var(--ink);
+  --spread-soft: var(--muted);
+  --spread-rule: var(--rule);
+  --film-grain: var(--film-dark-grain);
+  --plate-hatch: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.ds-overlay,
+.ds-tooltip,
+.popover-surface,
+.study-worksheet {
+  background-image: var(--film-grain);
+  background-size: var(--grain-size);
+}
+
+/* Tabler UI symbols are generated at build time; custom celestial art stays separate. */
+.ds-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  vertical-align: -0.16em;
+}
+.atlas-next .ds-icon {
+  width: 1em;
+  height: 1em;
+}
+.ds-disclosure-mark {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
 }

@@ -1,17 +1,11 @@
 import { Markdown } from '@tanstack/markdown/react';
 import { Link } from '@tanstack/react-router';
-import { motion, useReducedMotion } from 'motion/react';
-import { Activity, startTransition, useState, ViewTransition } from 'react';
 
-import { fieldTest } from '../evidence.js';
-import { ActionButton, DisclosureMark } from './design/components';
-import { timing, easeEnter, easeExit } from './design/motion';
+import { UiIcon } from './design/icons';
+import { SafetyCard } from './safety-card';
 import { Page, SourceLink, sourceById } from './shared';
+import { testerNotes } from './tester-notes';
 export default function FieldNotes() {
-  const [showTest, setShowTest] = useState(false);
-  const [awake, setAwake] = useState(false);
-  const [checks, setChecks] = useState<boolean[]>(() => fieldTest.map(() => false));
-  const reduced = useReducedMotion();
   return (
     <Page
       kind="notes"
@@ -19,7 +13,7 @@ export default function FieldNotes() {
       intro={
         <Markdown>
           {
-            'Early testers praised Astra’s code review but reported stalled runs and hard-to-follow explanations. [OpenAI’s response](#tibo) points to changes shortly before launch.'
+            'Before the November 17 release, early testers found genuine strengths and frustrating failures. [OpenAI reported late changes](#tibo); Theo Browne said they helped, but did not change his recommendation.'
           }
         </Markdown>
       }
@@ -35,80 +29,29 @@ export default function FieldNotes() {
               </div>
               <div className="atlas-voice-copy">
                 <h3>{source.title}</h3>
-                <p>{source.summary}</p>
-                <p className="atlas-caveat">{source.caveat}</p>
+                {testerNotes[id].map((paragraph) => (
+                  <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                ))}
                 <SourceLink id={id}>Read the original</SourceLink>
+                {id === 'theo' ? (
+                  <a
+                    className="atlas-reference atlas-mirror"
+                    href="https://www.nitter.gq/thsottiaux/status/2122929634916679820"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Follow-up exchange
+                  </a>
+                ) : null}
               </div>
             </article>
           );
         })}
       </div>
-      <section className="atlas-safety-note">
-        <h2>What the system card found</h2>
-        <p>{sourceById['system-card'].summary}</p>
-        <p className="atlas-caveat">{sourceById['system-card'].caveat}</p>
-        <SourceLink id="system-card">Read the system card</SourceLink>
-      </section>
-      <section className="atlas-test">
-        <div>
-          <h2>Try a task of your own</h2>
-        </div>
-        <ActionButton
-          variant="primary"
-          className="atlas-button"
-          aria-expanded={showTest}
-          aria-controls="field-checklist"
-          onClick={() => {
-            if (!showTest) setAwake(true);
-            startTransition(() => setShowTest((value) => !value));
-          }}
-        >
-          {showTest ? 'Close checklist' : 'Open checklist'} <DisclosureMark open={showTest} />
-        </ActionButton>
-        <motion.div
-          id="field-checklist"
-          className="checklist-frame"
-          inert={!showTest}
-          aria-hidden={!showTest}
-          initial={false}
-          animate={{ height: showTest ? 'auto' : 0, opacity: showTest ? 1 : 0 }}
-          transition={{
-            duration: reduced ? 0 : timing.disclose,
-            ease: showTest ? easeEnter : easeExit,
-          }}
-          onAnimationComplete={() => {
-            if (!showTest) setAwake(false);
-          }}
-        >
-          <ViewTransition default={reduced ? 'none' : 'auto'}>
-            <Activity mode={awake || showTest ? 'visible' : 'hidden'}>
-              <div className="atlas-checklist">
-                {fieldTest.map((item, index) => (
-                  <label key={item}>
-                    <input
-                      type="checkbox"
-                      checked={checks[index]}
-                      onChange={() =>
-                        setChecks((current) =>
-                          current.map((value, i) => (i === index ? !value : value)),
-                        )
-                      }
-                    />
-                    <span>{item}</span>
-                  </label>
-                ))}
-                <p aria-live="polite">
-                  {checks.filter(Boolean).length} of {fieldTest.length} checks complete. Kept while
-                  this page stays open.
-                </p>
-              </div>
-            </Activity>
-          </ViewTransition>
-        </motion.div>
-      </section>
+      <SafetyCard />
       <div className="atlas-next">
         <Link to="/sources">
-          Inspect the sources <span>↗</span>
+          Inspect the sources <UiIcon name="arrow-up-right" />
         </Link>
       </div>
     </Page>

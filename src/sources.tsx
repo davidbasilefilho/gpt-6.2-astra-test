@@ -18,7 +18,7 @@ export default function Sources() {
     <Page
       kind="sources"
       title="Sources"
-      intro="The announcement, system card and public reports behind this guide. Open an entry to see what it supports and how we checked it."
+      intro="The launch reports, benchmarks, pricing and safety evidence behind this guide. Open an entry to see what it supports and how we checked it."
     >
       <div className="atlas-source-tools">
         <fieldset className="atlas-filter" aria-label="Filter sources">
