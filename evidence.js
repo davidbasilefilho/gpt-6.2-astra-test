@@ -1,0 +1,242 @@
+/** Editorial snapshot. Every assessment is attributed, not a universal ranking. */
+export const checkedAt = '2026-11-18';
+
+export const sources = [
+  {
+    id: 'launch',
+    author: 'OpenAI',
+    type: 'Official announcement',
+    date: '2026-11-17',
+    title: 'Introducing GPT-6.2 Astra and Sol',
+    url: 'https://openai.com/index/introducing-gpt-6-2-astra-sol/',
+    summary:
+      'OpenAI positions Sol for everyday work and Astra for harder professional projects. It reports improvements in efficiency, code, documents and visual work.',
+    caveat:
+      'Provider-reported results. A benchmark score is not a promise about your next project.',
+    verification: 'Read on the publisher’s website.',
+  },
+  {
+    id: 'theo',
+    author: 'Theo Browne',
+    type: 'Early tester',
+    date: '2026-11-17',
+    title: 'Why I hate GPT-6.2 Astra',
+    url: 'https://x.com/theo/status/2122760447103484410',
+    mirrorUrl: 'https://www.teapawt.net/theo/article/2122760447103484410',
+    summary:
+      'Praised code review, novel solutions, 3D work and computer use. Reported opaque explanations, unnecessary questions and long runs without useful progress.',
+    caveat:
+      'A strongly negative account of his own early-access workflows, not a controlled cross-user study. His predictions about reception are not outcomes.',
+    verification:
+      'User-supplied article text; title and post identifier corroborated through indexed public mirrors. Direct X retrieval was blocked.',
+  },
+  {
+    id: 'dan',
+    author: 'Dan Shipper',
+    type: 'Early tester',
+    date: '2026-11-17',
+    title: 'Every’s early impressions',
+    url: 'https://x.com/danshipper/status/2122754729012777052',
+    mirrorUrl: 'https://teapawt.org/danshipper/status/2122754729012777052',
+    summary:
+      'Found Astra’s writing too compressed, builds prone to stopping early and designs insufficiently varied. Also credited its default design instincts.',
+    caveat:
+      'These are Every’s reported experiences over several weeks. Good default taste and reliable end-to-end delivery are different tests.',
+    verification:
+      'User-supplied screenshot checked against a readable public post mirror. Direct X retrieval was blocked.',
+  },
+  {
+    id: 'matt',
+    author: 'Matt Shumer',
+    type: 'Early tester',
+    date: '2026-11-17',
+    title: 'A negative testing experience',
+    url: 'https://x.com/mattshumer_/status/2122752192226406421',
+    mirrorUrl: 'https://www.teapawt.org/mattshumer_/status/2122752192226406421',
+    summary:
+      'Declined to publish a full review and did not recommend either model after a poor testing experience.',
+    caveat:
+      'The short post does not supply a reproducible methodology or enough detail to explain the failures.',
+    verification:
+      'User-supplied screenshot corroborated by indexed mirrors and a quoted post in a readable public thread. Direct X retrieval was blocked.',
+  },
+  {
+    id: 'tibo',
+    author: 'Tibo Sottiaux',
+    type: 'OpenAI response',
+    date: '2026-11-18',
+    title: 'A changing model, a disputed first impression',
+    url: 'https://x.com/thsottiaux/status/2122929634916679820',
+    mirrorUrl: 'https://www.nitter.gq/thsottiaux/status/2122929634916679820',
+    summary:
+      'Said substantial changes landed in the final three to four days and suspected early review videos had not retested them. Acknowledged room to improve taste and ease of use.',
+    caveat:
+      'A reason to retest, not evidence that every reported problem is fixed. The retesting explanation is his account, not an independently verified fact.',
+    verification:
+      'Post text available in a search-indexed public mirror; canonical post identifier corroborated separately. Direct X and full mirror retrieval were blocked.',
+  },
+  {
+    id: 'system-card',
+    author: 'OpenAI',
+    type: 'Safety documentation',
+    date: '2026-11-17',
+    title: 'GPT-6.2 System Card',
+    url: 'https://deploymentsafety.openai.com/gpt-6-2-astra-sol',
+    summary:
+      'Documents capability assessments, safeguards and behavioral regressions, including greater omission of known obstacles in some evaluations.',
+    caveat:
+      'Astra reaches OpenAI’s High AI Self-Improvement threshold; Sol does not. This is a preparedness classification, not a claim of autonomous recursive self-improvement.',
+    verification:
+      'Read on OpenAI’s Deployment Safety Hub, including the safety overview and clarification of the High threshold.',
+  },
+  {
+    id: 'access',
+    author: 'OpenAI Help Center',
+    type: 'Subscription access',
+    date: '2026-11-18',
+    title: 'ChatGPT Work and Codex',
+    url: 'https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex',
+    summary:
+      'The rollout is in Work and Codex, not regular Chat. Access depends on plan, workspace permissions and rollout progress.',
+    caveat:
+      'Eligible plans include Plus, Pro, Business, Enterprise and Edu. Usage varies with the task and settings; faster modes have separate eligibility and allowance rules.',
+    verification:
+      'Read the current official help article. Availability and billing can change after this snapshot.',
+  },
+  {
+    id: 'every',
+    author: 'Katie Parrott / Every',
+    type: 'Published review',
+    date: '2026-11-17',
+    title: 'Vibe Check: GPT-6.2 Astra and Sol Leave Us Wanting More',
+    url: 'https://every.to/vibe-check/vibe-check-gpt-6-2-astra-and-sol-leave-us-wanting-more',
+    summary:
+      'The public introduction reports efficient performance on bounded tasks, while asking for stronger judgment and follow-through.',
+    caveat:
+      'Only the publicly accessible introduction was reviewed. The full article is subscriber-only.',
+    verification: 'Read the publisher’s public introduction; did not bypass its paywall.',
+  },
+  {
+    id: 'pricing',
+    author: 'OpenAI',
+    type: 'API documentation',
+    date: '2026-11-18',
+    title: 'GPT-6.2 model rates and processing tiers',
+    url: 'https://developers.openai.com/api/docs/pricing',
+    summary:
+      'Input, cache read and write, output, service-speed and long-context pricing for both models.',
+    caveat:
+      'API token rates are not subscription limits or a measure of inference cost. Some request types have extra costs.',
+    verification:
+      'Checked the pricing table against both model cards and the launch dates of the Ultrafast rates.',
+  },
+  {
+    id: 'daybreak',
+    author: 'OpenAI Help Center',
+    type: 'Program eligibility',
+    date: '2026-11-18',
+    title: 'Daybreak Blue and Red eligibility',
+    url: 'https://help.openai.com/en/articles/20001259-troubleshooting-openai-daybreak',
+    summary:
+      '6.2 models retain standard safeguards with Blue. Reduced refusals require enabled Red approval and access to the model.',
+    caveat:
+      'Approval and enablement are separate. Earlier model-specific rules are not necessarily applicable to 6.2.',
+    verification: 'Read the model-specific eligibility section.',
+  },
+  {
+    id: 'ultra',
+    author: 'Anthropic',
+    type: 'Official plan documentation',
+    date: '2026-11-18',
+    title: 'What is the Ultra plan?',
+    url: 'https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan',
+    summary: 'Claude Ultra’s weekly usage, verification conditions and Fable-specific limits.',
+    caveat:
+      'Plan multiples use Anthropic’s own baseline; they do not convert into OpenAI quota or finished tasks.',
+    verification: 'Checked plan rules and separate monthly credit documentation.',
+  },
+  {
+    id: 'semianalysis',
+    author: 'SemiAnalysis',
+    type: 'Independent estimate',
+    date: '2026-10-05',
+    title: 'Subscription API-equivalent value, October 2026',
+    url: 'https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x',
+    summary:
+      'Estimated the API list-price value of exhausting different model allowances in then-current paid subscriptions.',
+    caveat:
+      'Pre-dates the October 29 quota revision and the 6.2 launch. Model caps differ; this is not the cash value of the subscription.',
+    verification:
+      'Checked the original October 5 report against the subsequent OpenAI Pro plan update.',
+  },
+  {
+    id: 'mypriors',
+    author: 'MyPriors',
+    type: 'Independent estimate',
+    date: '2026-11-18',
+    title: 'GPT-6.2 Astra subscription assumptions',
+    url: 'https://mypriors.com/models/gpt-6.2-astra?r=aa',
+    summary:
+      'Models a blended token price using an assumed cache-heavy workload and a prior-generation subscription calibration.',
+    caveat:
+      'It does not independently measure current 6.2 weekly tasks, conversion from tokens to quota, or completion rate.',
+    verification: 'Inspected the model-specific entry and its assumptions in the interactive tool.',
+  },
+  {
+    id: 'frontiercode',
+    author: 'Cognition',
+    type: 'Benchmark author',
+    date: '2026-11-18',
+    title: 'FrontierCode 2.0 results',
+    url: 'https://cognition.com/frontiercode',
+    summary: 'Evaluates code changes against maintainers’ requirements with weighted rubrics.',
+    caveat:
+      'The evaluator also builds competing agents. Scores are weighted quality measurements, not simple completion rates.',
+    verification: 'Checked model generation, effort, harness and metric in the published results.',
+  },
+  {
+    id: 'terminal-science',
+    author: 'Artificial Analysis',
+    type: 'Independent benchmark',
+    date: '2026-11-18',
+    title: 'Terminal-Bench-Science',
+    url: 'https://artificialanalysis.ai/evaluations/terminal-bench-science',
+    summary:
+      'Tests terminal-based scientific workflows with a common agent harness and published grading criteria.',
+    caveat:
+      'Results reflect the exact harness and reasoning effort, not weekly tasks in a subscription.',
+    verification: 'Cross-checked the evaluation methodology and model comparison entries.',
+  },
+];
+
+export const lensNotes = [
+  {
+    id: 'sol',
+    name: 'Sol',
+    heading: 'Start with the everyday.',
+    text: 'A sensible first experiment for a bounded task. Judge the finished result, not just how quickly the answer arrives.',
+    basis:
+      'Editorial suggestion informed by OpenAI’s positioning, not a guaranteed performance advantage.',
+    sourceIds: ['launch', 'access'],
+  },
+  {
+    id: 'astra',
+    name: 'Astra',
+    heading: 'Give complexity a second look.',
+    text: 'Try a difficult review, synthesis or visual build. Ask for a usable deliverable and make completion easy to verify.',
+    basis:
+      'Editorial suggestion. The launch claims and early workflow reports point in different directions.',
+    sourceIds: ['launch', 'theo', 'dan'],
+  },
+  {
+    id: 'judgment',
+    name: 'Judgment',
+    heading: 'Capability is not the whole experience.',
+    text: 'Clarity, follow-through and the amount of supervision matter alongside benchmark performance.',
+    basis: 'Editorial synthesis of the named sources, not an independent benchmark.',
+    sourceIds: ['theo', 'dan', 'matt', 'tibo', 'system-card'],
+  },
+];
+
+export const editorialNote =
+  'Independent editorial guide, not affiliated with OpenAI. This is a launch-period snapshot, not a universal ranking. Official claims, tester reports and our suggestions are labeled separately.';

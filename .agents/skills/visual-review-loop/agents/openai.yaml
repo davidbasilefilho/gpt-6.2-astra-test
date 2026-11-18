@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Visual Review Loop'
+  short_description: 'Compare interface versions through repeatable visual evidence'
+  default_prompt: 'Use $visual-review-loop to inspect and improve this interface against its brief.'

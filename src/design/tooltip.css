@@ -1,0 +1,44 @@
+.ds-tooltip-positioner {
+  z-index: 60;
+}
+.ds-tooltip {
+  max-inline-size: min(26ch, calc(100vw - 24px));
+  padding: 8px 12px;
+  border: 1px solid var(--edge);
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--surface-shadow);
+  font: 400 13px/1.4 var(--sans);
+  transform-origin: var(--transform-origin);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity var(--motion-fast) var(--ease-enter),
+    transform var(--motion-enter) var(--ease-enter);
+  user-select: none;
+}
+.ds-tooltip[data-starting-style],
+.ds-tooltip[data-ending-style] {
+  opacity: 0;
+  transform: translate(var(--tip-x, 0px), var(--tip-y, -3px)) scale(0.97);
+}
+.ds-tooltip[data-ending-style] {
+  transition-timing-function: var(--ease-exit);
+}
+.ds-tooltip-positioner[data-side='top'] {
+  --tip-y: 3px;
+}
+.ds-tooltip-positioner[data-side='right'] {
+  --tip-x: -3px;
+  --tip-y: 0px;
+}
+.ds-tooltip-positioner[data-side='left'] {
+  --tip-x: 3px;
+  --tip-y: 0px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-tooltip {
+    transition: none;
+    transform: none;
+  }
+}
