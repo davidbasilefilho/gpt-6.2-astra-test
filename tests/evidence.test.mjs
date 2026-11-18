@@ -40,9 +40,14 @@ test('search is case insensitive, trimmed, composable and can return empty', () 
 test('route and accessibility contracts are present', async () => {
   const code = (
     await Promise.all(
-      ['main.tsx', 'field-notes.tsx', 'sources.tsx', 'shared.tsx', 'subscription-value.tsx'].map(
-        (file) => readFile(new URL(`../src/${file}`, import.meta.url), 'utf8'),
-      ),
+      [
+        'main.tsx',
+        'field-notes.tsx',
+        'sources.tsx',
+        'shared.tsx',
+        'subscription-value.tsx',
+        'design/forms.tsx',
+      ].map((file) => readFile(new URL(`../src/${file}`, import.meta.url), 'utf8')),
     )
   ).join('\n');
   for (const route of ['/compare', '/field-notes', '/sources', '/access'])
@@ -50,8 +55,8 @@ test('route and accessibility contracts are present', async () => {
   for (const contract of [
     "defaultPreload: 'intent'",
     'defaultViewTransition: true',
-    'study-worksheets',
-    'aria-pressed={type === filter}',
+    '<WorksheetTabs',
+    '<RadioGroup',
     'useReducedMotion',
     '<Activity',
     '<ViewTransition',

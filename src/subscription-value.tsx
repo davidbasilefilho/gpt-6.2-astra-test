@@ -1,6 +1,6 @@
-import { useReducedMotion } from 'motion/react';
-import { Activity, startTransition, useState, ViewTransition } from 'react';
+import { useState } from 'react';
 
+import { TextField, WorksheetTabs } from './design/forms';
 import { Cite } from './study-components';
 import { estimateTasks } from './task-value.js';
 const initial = { quota: '', success: '', fresh: '', cached: '', output: '' };
@@ -13,7 +13,9 @@ const fields = [
 ] as const;
 function Worksheet({ name, rates }: { name: string; rates: number[] }) {
   const [inputs, setInputs] = useState(initial);
-  const result = estimateTasks(inputs, rates);
+  const result =
+    inputs.quota !== '' && Number(inputs.quota) < 0.01 ? null : estimateTasks(inputs, rates);
+  const incomplete = Object.values(inputs).some((value) => value === '');
   const dollars = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -23,19 +25,24 @@ function Worksheet({ name, rates }: { name: string; rates: number[] }) {
     <fieldset className="study-worksheet">
       <legend>{name}</legend>
       {fields.map(([key, label]) => (
-        <label key={key}>
-          {label}
-          <input
-            type="number"
-            inputMode="decimal"
-            min={key === 'quota' ? 0.01 : 0}
-            max={key === 'quota' || key === 'success' ? 100 : undefined}
-            step="any"
-            placeholder="Enter value"
-            value={inputs[key]}
-            onChange={(e) => setInputs({ ...inputs, [key]: e.target.value })}
-          />
-        </label>
+        <TextField
+          key={key}
+          label={label}
+          type="number"
+          inputMode="decimal"
+          min={key === 'quota' ? 0.01 : 0}
+          max={key === 'quota' || key === 'success' ? 100 : undefined}
+          errorMessage={
+            key === 'quota'
+              ? 'Enter a percentage from 0.01 to 100.'
+              : key === 'success'
+                ? 'Enter a percentage from 0 to 100.'
+                : 'Enter zero or a positive token count.'
+          }
+          step="any"
+          value={inputs[key]}
+          onValueChange={(value) => setInputs({ ...inputs, [key]: value })}
+        />
       ))}
       <output aria-live="polite">
         {result ? (
@@ -47,15 +54,17 @@ function Worksheet({ name, rates }: { name: string; rates: number[] }) {
             </span>
           </>
         ) : (
-          <span>Enter all five observations to estimate this workload.</span>
+          <span>
+            {incomplete
+              ? 'Enter all five observations to estimate this workload.'
+              : 'Check the entered values. Percentages must stay within range and token counts cannot be negative.'}
+          </span>
         )}
       </output>
     </fieldset>
   );
 }
 export function SubscriptionValue() {
-  const [worksheet, setWorksheet] = useState(0);
-  const reduced = useReducedMotion();
   return (
     <section id="value" className="atlas-study">
       <h2>What does $200 buy?</h2>
@@ -128,34 +137,21 @@ export function SubscriptionValue() {
         including retries and failures. Supply averages for each model separately. Use the binding
         model-specific weekly meter; enter billed output including reasoning where applicable.
       </p>
-      <div className="study-pricing-controls">
-        <fieldset>
-          <legend>Workload to estimate</legend>
-          {['ChatGPT Pro', 'Claude Ultra'].map((name, i) => (
-            <label key={name}>
-              <input
-                type="radio"
-                name="worksheet-plan"
-                checked={worksheet === i}
-                onChange={() => startTransition(() => setWorksheet(i))}
-              />
-              {name}
-            </label>
-          ))}
-        </fieldset>
-      </div>
-      <div className="study-worksheets">
-        <ViewTransition default={reduced ? 'none' : 'auto'}>
-          <div>
-            <Activity mode={worksheet === 0 ? 'visible' : 'hidden'}>
-              <Worksheet name="GPT-6.2 Astra · Pro $200" rates={[8, 0.4, 40]} />
-            </Activity>
-            <Activity mode={worksheet === 1 ? 'visible' : 'hidden'}>
-              <Worksheet name="Claude Fable 5.2 · Ultra $200" rates={[8, 0.2, 40]} />
-            </Activity>
-          </div>
-        </ViewTransition>
-      </div>
+      <WorksheetTabs
+        label="Workload to estimate"
+        items={[
+          {
+            value: 'chatgpt',
+            label: 'ChatGPT Pro',
+            content: <Worksheet name="GPT-6.2 Astra · Pro $200" rates={[8, 0.4, 40]} />,
+          },
+          {
+            value: 'claude',
+            label: 'Claude Ultra',
+            content: <Worksheet name="Claude Fable 5.2 · Ultra $200" rates={[8, 0.2, 40]} />,
+          },
+        ]}
+      />
       <p className="atlas-caveat">
         Expected completions = 100 ÷ percent of weekly quota per attempt × acceptance rate. Weekly
         API equivalent prices all attempts at Standard short-context rates; it excludes cache

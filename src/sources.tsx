@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
 
 import { checkedAt, sources } from '../evidence.js';
-import { ActionButton } from './design/components';
+import { ChoiceField, TextField } from './design/forms';
 import { timing, easeEnter, easeExit } from './design/motion';
 import { filterSources } from './evidence-filter.js';
 import { ExternalMark, Page, SourceLink, type Source } from './shared';
@@ -21,23 +21,19 @@ export default function Sources() {
       intro="The launch reports, benchmarks, pricing and safety evidence behind this guide. Open an entry to see what it supports and how we checked it."
     >
       <div className="atlas-source-tools">
-        <fieldset className="atlas-filter" aria-label="Filter sources">
-          {sourceTypes.map((type) => (
-            <ActionButton key={type} aria-pressed={type === filter} onClick={() => setFilter(type)}>
-              {type}
-            </ActionButton>
-          ))}
-        </fieldset>
-        <label className="atlas-search">
-          <span className="atlas-sr-only">Search sources</span>
-          <input
-            className="ds-input"
-            type="search"
-            placeholder="Search sources"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </label>
+        <ChoiceField
+          label="Source type"
+          value={filter}
+          onValueChange={setFilter}
+          options={sourceTypes.map((value) => ({ value, label: value }))}
+        />
+        <TextField
+          label="Search sources"
+          type="search"
+          placeholder="Author, title or topic"
+          value={query}
+          onValueChange={setQuery}
+        />
       </div>
       <output className="atlas-result-count">
         {filtered.length} {filtered.length === 1 ? 'source' : 'sources'} · Checked {checkedAt}

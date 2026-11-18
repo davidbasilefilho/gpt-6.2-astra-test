@@ -1,0 +1,261 @@
+/* Form controls share publication typography, square edges and stable geometry. */
+.ds-field,
+.ds-choice-field {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+.ds-field-label {
+  font: 500 15px/1.4 var(--sans);
+  color: var(--ink);
+}
+.ds-field-description {
+  font: 14px/1.45 var(--sans);
+  color: var(--muted);
+}
+.ds-field .ds-field-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--paper) 85%, var(--wash));
+  color: var(--ink);
+  padding: 10px 12px;
+  font: 16px/1.4 var(--sans);
+  font-variant-numeric: tabular-nums;
+  transition:
+    border-color var(--motion-fast),
+    background-color var(--motion-fast),
+    box-shadow var(--motion-fast);
+}
+.ds-field-input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+.ds-field-input:hover {
+  border-color: var(--ink);
+}
+.ds-field-input:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+.ds-field-input:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+}
+.ds-field-input[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ds-choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ds-choice {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 9px 13px;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  cursor: pointer;
+  font: 16px/1.4 var(--sans);
+  user-select: none;
+  transition:
+    background-color var(--motion-fast),
+    border-color var(--motion-fast),
+    color var(--motion-fast);
+}
+.ds-choice:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--wash) 35%, transparent);
+  border-color: var(--ink);
+}
+.ds-choice:has([data-checked]) {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--wash) 60%, var(--paper));
+  border-color: var(--ink);
+}
+.ds-radio {
+  display: grid;
+  place-items: center;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+}
+.ds-radio-indicator {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+}
+.ds-choice:has(:focus-visible) {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+.ds-radio:focus-visible {
+  outline: none;
+}
+.ds-worksheet-tabs {
+  max-width: 680px;
+  margin: 24px 0;
+}
+.ds-tab-list {
+  display: inline-flex;
+  max-width: 100%;
+  position: relative;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ds-tab {
+  position: relative;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font: 500 16px/1.4 var(--sans);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast),
+    color var(--motion-fast);
+}
+.ds-tab:hover {
+  background: color-mix(in srgb, var(--wash) 30%, transparent);
+  color: var(--ink);
+}
+.ds-tab[data-active] {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--wash) 50%, transparent);
+}
+.ds-tab:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -4px;
+}
+.ds-tab:active {
+  background: var(--wash);
+}
+.ds-tab-indicator {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: var(--active-tab-width);
+  height: 2px;
+  translate: var(--active-tab-left) 0;
+  background: var(--accent);
+  transition:
+    translate var(--motion-enter) var(--ease-enter),
+    width var(--motion-enter) var(--ease-enter);
+}
+.ds-tab-panel {
+  padding-top: 24px;
+}
+.ds-tab-panel[data-hidden] {
+  display: none;
+}
+.ds-tab-panel:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+.study-worksheet .ds-field {
+  grid-template-columns: minmax(0, 1fr) minmax(110px, 0.55fr);
+  align-items: center;
+  gap: 12px;
+  margin: 13px 0;
+}
+.study-worksheet .ds-field-label {
+  display: block;
+  margin: 0;
+}
+.ds-pricing-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  margin: 24px 0 18px;
+}
+.atlas-source-tools .ds-field {
+  min-width: min(280px, 100%);
+  flex: 1;
+  max-width: 400px;
+}
+@media (max-width: 520px) {
+  .ds-choice {
+    padding-inline: 10px;
+  }
+  .ds-tab {
+    flex: 1;
+    padding-inline: 10px;
+  }
+  .study-worksheet .ds-field {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    margin-block: 18px;
+  }
+  .atlas-source-tools .ds-field {
+    max-width: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-field-input,
+  .ds-choice,
+  .ds-tab,
+  .ds-tab-indicator {
+    transition: none;
+  }
+}
+
+.ds-tab-panel .study-worksheet {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+.ds-tab-panel .study-worksheet legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font: 500 18px/1.4 var(--sans);
+}
+.ds-tab-panel .study-worksheet output {
+  border: 0;
+  margin-top: 24px;
+  padding: 16px;
+  background: color-mix(in srgb, var(--wash) 45%, transparent);
+}
+.ds-tab-panel .study-worksheet {
+  min-width: 0;
+}
+.ds-tab-panel .study-worksheet output {
+  display: grid;
+  gap: 4px;
+  min-height: 72px;
+  font: 15px/1.5 var(--sans);
+}
+.ds-tab-panel .study-worksheet output b {
+  color: var(--accent);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.ds-field-error {
+  grid-column: 1 / -1;
+  color: var(--accent);
+  font: 14px/1.4 var(--sans);
+}
+.ds-field-input[data-invalid] {
+  border-color: var(--accent);
+}
+@media (max-width: 520px) {
+  .ds-tab-list {
+    display: flex;
+  }
+}

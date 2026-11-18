@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { rateFor, tiers } from './api-rates.js';
+import { ChoiceField } from './design/forms';
 import { Cite } from './study-components';
 export function ApiAccess() {
   const [model, setModel] = useState('Sol');
@@ -15,35 +16,22 @@ export function ApiAccess() {
           processing tiers. Eligible Pro accounts can activate a separate monthly API credit grant;
           it is not the Work allowance.
         </p>
-        <div className="study-pricing-controls">
-          <fieldset>
-            <legend>Model</legend>
-            {['Sol', 'Astra'].map((m) => (
-              <label key={m}>
-                <input
-                  type="radio"
-                  name="price-model"
-                  checked={model === m}
-                  onChange={() => setModel(m)}
-                />
-                {m}
-              </label>
-            ))}
-          </fieldset>
-          <fieldset>
-            <legend>Input context</legend>
-            {[false, true].map((v) => (
-              <label key={String(v)}>
-                <input
-                  type="radio"
-                  checked={v === longContext}
-                  name="input-context"
-                  onChange={() => setLong(v)}
-                />
-                {v ? 'Over 272K' : 'Up to 272K'}
-              </label>
-            ))}
-          </fieldset>
+        <div className="ds-pricing-controls">
+          <ChoiceField
+            label="Model"
+            value={model}
+            onValueChange={setModel}
+            options={['Sol', 'Astra'].map((value) => ({ value, label: value }))}
+          />
+          <ChoiceField
+            label="Input context"
+            value={longContext ? 'long' : 'short'}
+            onValueChange={(value) => setLong(value === 'long')}
+            options={[
+              { value: 'short', label: 'Up to 272K' },
+              { value: 'long', label: 'Over 272K' },
+            ]}
+          />
         </div>
         <section className="study-rate-table" aria-label="Token prices" tabIndex={0}>
           <table>
