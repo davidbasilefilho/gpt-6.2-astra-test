@@ -1,17 +1,40 @@
+import { Button } from '@base-ui/react/button';
 import { motion, useReducedMotion } from 'motion/react';
-import type { ButtonHTMLAttributes } from 'react';
+import type { AnchorHTMLAttributes } from 'react';
 
 import { controlSpring } from './motion';
+import { cn, controlVariants, type ControlVariants } from './variants';
 
-type ActionProps = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'outline' };
+type ActionProps = Omit<Button.Props, 'className'> & ControlVariants & { className?: string };
 export function ActionButton({
   variant = 'outline',
-  className = '',
+  className,
+  tone,
+  size,
   type = 'button',
   ...props
 }: ActionProps) {
   return (
-    <button type={type} className={`ds-action ds-action--${variant} ${className}`} {...props} />
+    <Button
+      type={type}
+      className={cn(controlVariants({ variant, tone, size }), className)}
+      {...props}
+    />
+  );
+}
+/** Navigation stays a real anchor, including open-in-new-tab and copy-link behavior. */
+export function ButtonLink({
+  variant,
+  tone,
+  size,
+  className,
+  children,
+  ...props
+}: AnchorHTMLAttributes<HTMLAnchorElement> & ControlVariants) {
+  return (
+    <a className={cn(controlVariants({ variant, tone, size }), className)} {...props}>
+      {children}
+    </a>
   );
 }
 export function DisclosureMark({ open }: { open: boolean }) {

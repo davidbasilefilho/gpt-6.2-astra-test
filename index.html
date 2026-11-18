@@ -34,77 +34,7 @@
         <a href="/compare">Guide</a><a href="/field-notes">Field notes</a
         ><a href="/sources">Sources</a><a href="/access">Access</a>
       </nav>
-      <div class="theme-control">
-        <button
-          type="button"
-          id="theme-trigger"
-          class="ds-action"
-          aria-haspopup="menu"
-          aria-label="Theme: system"
-          aria-expanded="false"
-          aria-controls="theme-menu"
-        >
-          <svg class="theme-phase" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <use href="/assets/ui-icons.svg#monitor" />
-          </svg>
-          <span>Theme</span>
-          <svg class="theme-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <use href="/assets/ui-icons.svg#chevron-down" />
-          </svg>
-        </button>
-        <div id="theme-menu" class="ds-overlay" hidden>
-          <div class="theme-options" data-disclosure-content role="menu" aria-label="Appearance">
-            <button
-              type="button"
-              class="ds-action"
-              data-theme-choice="system"
-              role="menuitemradio"
-              aria-checked="true"
-              tabindex="0"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <use href="/assets/ui-icons.svg#monitor" />
-              </svg>
-              <span>System</span
-              ><svg class="choice-check" viewBox="0 0 24 24" aria-hidden="true">
-                <use href="/assets/ui-icons.svg#check" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              class="ds-action"
-              data-theme-choice="light"
-              role="menuitemradio"
-              aria-checked="false"
-              tabindex="-1"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <use href="/assets/ui-icons.svg#sun" />
-              </svg>
-              <span>Light</span
-              ><svg class="choice-check" viewBox="0 0 24 24" aria-hidden="true">
-                <use href="/assets/ui-icons.svg#check" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              class="ds-action"
-              data-theme-choice="dark"
-              role="menuitemradio"
-              aria-checked="false"
-              tabindex="-1"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <use href="/assets/ui-icons.svg#moon" />
-              </svg>
-              <span>Dark</span
-              ><svg class="choice-check" viewBox="0 0 24 24" aria-hidden="true">
-                <use href="/assets/ui-icons.svg#check" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+      <div class="theme-control" id="appearance-root"></div>
     </header>
     <div id="content" tabindex="-1"></div>
     <div id="route-sheet">
@@ -117,7 +47,9 @@
               An independent field guide to GPT-6.2: what the models promise, where testers
               disagree, and how to choose.
             </p>
-            <a class="primary ds-action ds-action--primary" href="/compare"
+            <a
+              class="primary ds-action ds-action--default ds-tone--accent ds-size--lg"
+              href="/compare"
               >Compare the models
               <svg
                 class="ds-icon"
@@ -150,7 +82,7 @@
                       <path d="M0 2h3" stroke="currentColor" stroke-width=".7" />
                     </pattern>
                   </defs>
-                  <g class="orbit-ink" fill="none">
+                  <g class="orbit-ink" fill="none" stroke-dasharray="3 7">
                     <ellipse cx="363" cy="266" rx="303" ry="111" transform="rotate(-25 363 266)" />
                     <ellipse
                       cx="355"
@@ -178,23 +110,35 @@
                     />
                   </g>
                   <g class="constellation">
-                    <g fill="none" stroke="currentColor" stroke-width="1.3">
-                      <path d="m76 136 37-20 22-60 49 13 31-39 32 18" />
-                      <path d="m476 462 50-27 40 5 23-51 56 8 23-44M589 389l-10-34" />
+                    <g class="constellation-group" data-constellation-art="0">
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        d="m76 136 37-20 22-60 49 13 31-39 32 18"
+                      />
+                      <use href="#spark" transform="translate(76 136)" />
+                      <use href="#spark" transform="translate(113 116) scale(.65)" />
+                      <use href="#spark" transform="translate(135 56)" />
+                      <use href="#spark" transform="translate(184 69) scale(.8)" />
+                      <use href="#spark" transform="translate(215 30) scale(1.05)" />
+                      <use href="#spark" transform="translate(247 48) scale(.65)" />
                     </g>
-                    <use href="#spark" transform="translate(76 136)" />
-                    <use href="#spark" transform="translate(113 116) scale(.65)" />
-                    <use href="#spark" transform="translate(135 56)" />
-                    <use href="#spark" transform="translate(184 69) scale(.8)" />
-                    <use href="#spark" transform="translate(215 30) scale(1.05)" />
-                    <use href="#spark" transform="translate(247 48) scale(.65)" />
-                    <use href="#spark" transform="translate(476 462)" />
-                    <use href="#spark" transform="translate(526 435) scale(.65)" />
-                    <use href="#spark" transform="translate(566 440) scale(.8)" />
-                    <use href="#spark" transform="translate(589 389) scale(.95)" />
-                    <use href="#spark" transform="translate(645 397) scale(.6)" />
-                    <use href="#spark" transform="translate(668 353)" />
-                    <use href="#spark" transform="translate(579 355) scale(.6)" />
+                    <g class="constellation-group" data-constellation-art="1">
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        d="m476 462 50-27 40 5 23-51 56 8 23-44M589 389l-10-34"
+                      />
+                      <use href="#spark" transform="translate(476 462)" />
+                      <use href="#spark" transform="translate(526 435) scale(.65)" />
+                      <use href="#spark" transform="translate(566 440) scale(.8)" />
+                      <use href="#spark" transform="translate(589 389) scale(.95)" />
+                      <use href="#spark" transform="translate(645 397) scale(.6)" />
+                      <use href="#spark" transform="translate(668 353)" />
+                      <use href="#spark" transform="translate(579 355) scale(.6)" />
+                    </g>
                   </g>
                   <g class="orbit-ink">
                     <g id="orbiter-near" transform="translate(124 369)">
@@ -218,225 +162,14 @@
                 </svg>
               </div>
               <div class="sun-position">
+                <svg class="solar-rays" viewBox="0 0 790 790" aria-hidden="true" focusable="false">
+                  <g id="solar-ray-lights"></g>
+                </svg>
                 <img src="/assets/sol.webp" width="790" height="790" alt="" class="sun" />
               </div>
             </div>
             <div class="plate-hitlayer">
-              <div class="celestial-focus sol-focus" data-body="sol">
-                <button
-                  type="button"
-                  class="planet-target"
-                  aria-label="About Sol"
-                  aria-expanded="false"
-                  aria-controls="sol-popover"
-                ></button>
-                <div class="body-popover" id="sol-popover" role="region" aria-label="Sol" hidden>
-                  <div class="popover-surface ds-overlay">
-                    <h2>Sol</h2>
-                    <p>OpenAI’s model for everyday professional work.</p>
-                    <a href="/compare">Compare the models</a>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="celestial-focus astra-focus"
-                data-body="astra"
-                role="group"
-                aria-label="Astra constellation"
-                aria-describedby="star-keyboard-help"
-              >
-                <span class="sr-only" id="star-keyboard-help"
-                  >Use arrow keys to explore stars, Home or End for the first or last star. Tab
-                  continues to Luna. Escape closes the description.</span
-                >
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="0"
-                  tabindex="0"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="1"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 2"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="2"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 3"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="3"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 4"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="4"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 5"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="5"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 6"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="6"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 7"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="7"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 8"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="8"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 9"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="9"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 10"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="10"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 11"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="11"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 12"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <button
-                  type="button"
-                  class="planet-target star-target"
-                  data-star="12"
-                  tabindex="-1"
-                  aria-describedby="star-keyboard-help"
-                  aria-label="About Astra, star 13"
-                  aria-expanded="false"
-                  aria-controls="astra-popover"
-                ></button>
-                <div
-                  class="body-popover"
-                  id="astra-popover"
-                  role="region"
-                  aria-label="Astra"
-                  hidden
-                >
-                  <div class="popover-surface ds-overlay">
-                    <h2>Astra</h2>
-                    <p>OpenAI’s model for harder professional projects.</p>
-                    <a href="/compare">Compare the models</a>
-                  </div>
-                </div>
-              </div>
-              <div class="celestial-focus orbit-focus" data-body="luna">
-                <button
-                  type="button"
-                  class="planet-target orbit-target"
-                  data-orbit="orbiter-near"
-                  aria-label="About Luna"
-                  aria-expanded="false"
-                  aria-controls="luna-popover"
-                ></button>
-                <div class="body-popover" id="luna-popover" role="region" aria-label="Luna" hidden>
-                  <div class="popover-surface ds-overlay">
-                    <h2>Luna</h2>
-                    <p>A quieter orbit. A name glimpsed in the dark.</p>
-                    <p class="illustration-note">
-                      An illustrated presence, not a GPT-6.2 announcement.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="celestial-focus orbit-focus" data-body="terra">
-                <button
-                  type="button"
-                  class="planet-target orbit-target"
-                  data-orbit="orbiter-far"
-                  aria-label="About Terra"
-                  aria-expanded="false"
-                  aria-controls="terra-popover"
-                ></button>
-                <div
-                  class="body-popover"
-                  id="terra-popover"
-                  role="region"
-                  aria-label="Terra"
-                  hidden
-                >
-                  <div class="popover-surface ds-overlay">
-                    <h2>Terra</h2>
-                    <p>A familiar world, glimpsed from farther out.</p>
-                    <p class="illustration-note">
-                      An illustrated presence, not a GPT-6.2 announcement.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <div id="celestial-controls"></div>
             </div>
           </figure>
         </section>

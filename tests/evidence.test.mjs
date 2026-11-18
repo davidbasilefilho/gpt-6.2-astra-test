@@ -40,8 +40,8 @@ test('search is case insensitive, trimmed, composable and can return empty', () 
 test('route and accessibility contracts are present', async () => {
   const code = (
     await Promise.all(
-      ['main.tsx', 'field-notes.tsx', 'sources.tsx', 'shared.tsx', 'subscription-value.tsx'].map(
-        (file) => readFile(new URL(`../src/${file}`, import.meta.url), 'utf8'),
+      ['main.tsx', 'field-notes.tsx', 'sources.tsx', 'shared.tsx', 'design/forms.tsx'].map((file) =>
+        readFile(new URL(`../src/${file}`, import.meta.url), 'utf8'),
       ),
     )
   ).join('\n');
@@ -50,8 +50,8 @@ test('route and accessibility contracts are present', async () => {
   for (const contract of [
     "defaultPreload: 'intent'",
     'defaultViewTransition: true',
-    'study-worksheets',
-    'aria-pressed={type === filter}',
+    'export function AtlasTabs',
+    '<RadioGroup',
     'useReducedMotion',
     '<Activity',
     '<ViewTransition',
@@ -94,5 +94,8 @@ test('theme help is a semantic tooltip, not the native title attribute', async (
     ),
   );
   assert.ok(!/\stitle=["']/.test(html));
-  assert.ok(tooltip.includes('role="tooltip"') && tooltip.includes('aria-describedby'));
+  assert.match(tooltip, /<Tooltip.Root disabled=\{disabled\}/);
+  assert.match(tooltip, /<Tooltip.Trigger render=\{render\}/);
+  assert.match(tooltip, /<Tooltip.Popup/);
+  assert.doesNotMatch(tooltip, /MutationObserver|addEventListener|aria-describedby/);
 });

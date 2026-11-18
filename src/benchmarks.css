@@ -17,15 +17,17 @@
 .benchmark-stamp {
   margin-bottom: 28px;
 }
-.benchmark-ledger {
-  border-top: 1px solid var(--rule);
-}
 .benchmark-row {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
   gap: clamp(24px, 5vw, 68px);
   padding-block: 30px;
-  border-bottom: 1px solid var(--rule);
+}
+.benchmark-row + .benchmark-row {
+  border-block-start: 1px solid var(--rule);
+}
+.benchmark-row:first-child {
+  padding-block-start: 0;
 }
 .atlas-benchmarks h3 {
   font: 450 clamp(25px, 2.6vw, 34px)/1.1 var(--serif);
@@ -44,23 +46,26 @@
   gap: 24px;
   margin: 0 0 16px;
 }
-.benchmark-value dt {
+.benchmark-label {
   font-size: 15px;
   line-height: 1.5;
 }
-.benchmark-value dt span {
+.benchmark-label span {
   display: block;
   font-size: 13px;
   color: var(--muted);
 }
-.benchmark-value dd {
+.benchmark-amount {
   font: 450 clamp(38px, 4.5vw, 55px)/1.25 var(--serif);
   font-variant-numeric: tabular-nums;
   margin: 6px 0;
 }
-.benchmark-value dd span {
+.benchmark-amount span {
   font-size: 0.55em;
   margin-left: 2px;
+}
+.benchmark-track {
+  height: 4px;
 }
 .benchmark-bar {
   transform-origin: left center;
@@ -115,8 +120,7 @@
   font-weight: 600;
 }
 .benchmark-footnote {
-  border-top: 1px solid var(--rule);
-  padding-top: 16px;
+  padding-top: 8px;
   margin: 0;
 }
 @media (max-width: 680px) {

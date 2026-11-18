@@ -8,6 +8,7 @@ import {
 
 import { Benchmarks } from './benchmarks';
 import { UiIcon } from './design/icons';
+import { ScrollableLedger } from './design/scrollable-ledger';
 import { Page, SourceLink } from './shared';
 const comparison = [
   {
@@ -74,10 +75,9 @@ export default function Guide() {
         <div className="atlas-section-head">
           <h2>A practical comparison</h2>
         </div>
-        <section
+        <ScrollableLedger
           className="atlas-table-scroll"
-          tabIndex={0}
-          aria-label="Model comparison, horizontally scrollable on small screens"
+          label="Model comparison, horizontally scrollable on small screens"
         >
           <table className="atlas-table">
             <caption className="atlas-sr-only">
@@ -112,7 +112,7 @@ export default function Guide() {
               ))}
             </tbody>
           </table>
-        </section>
+        </ScrollableLedger>
       </section>
       <Benchmarks />
       <div className="atlas-next">

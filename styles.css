@@ -94,6 +94,7 @@ summary:focus-visible {
   white-space: nowrap;
 }
 .brand svg {
+  color: var(--brand-stroke);
   width: 43px;
   height: 32px;
 }
@@ -466,7 +467,6 @@ summary:focus-visible {
 }
 .spread {
   background: var(--wash);
-  border-block: 1px solid color-mix(in srgb, var(--rule) 32%, transparent);
   padding: 30px 0 37px;
 }
 .spread-rule {
@@ -512,11 +512,10 @@ summary:focus-visible {
   gap: 4vw;
   padding-block: 70px 80px;
 }
-.reading-list {
-  border-top: 1px solid var(--rule);
+.reading-list a + a {
+  border-block-start: 1px solid var(--rule);
 }
 .reading-list a {
-  border-bottom: 1px solid var(--rule);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -619,7 +618,6 @@ summary:focus-visible {
     grid-column: 1 / -1;
     grid-row: 2;
     border-left: 0;
-    border-top: 1px solid var(--rule);
     padding: 0;
     margin-top: 7px;
     justify-content: space-between;
@@ -1115,4 +1113,27 @@ body {
 .body-popover,
 .popover-surface {
   transform-origin: var(--overlay-origin, top center);
+}
+
+/* Night edition: cool engraved stock, a copper-lit sky and a legible horizon.
+   The daylight palette and engraving stay untouched. */
+:root[data-palette='dark'] .hero:before {
+  inset-block-start: 0;
+  background:
+    radial-gradient(ellipse 41% 67% at 75% 48%, rgb(199 121 85 / 13%), transparent 82%),
+    linear-gradient(to top, rgb(146 132 168 / 13%), transparent 43%);
+}
+:root[data-palette='dark'] .hero-horizon {
+  background: color-mix(in srgb, var(--star) 76%, var(--paper));
+  opacity: 0.78;
+}
+:root[data-palette='dark'] .spread {
+  background-image:
+    var(--film-dark-grain),
+    linear-gradient(104deg, rgb(189 145 139 / 9%), transparent 58%, rgb(41 46 78 / 16%)),
+    repeating-linear-gradient(132deg, transparent 0 6px, rgb(249 238 222 / 3%) 6px 7px);
+  background-size: var(--grain-size), auto, auto;
+}
+:root[data-palette='dark'] .mast {
+  border-bottom-color: var(--spread-rule);
 }

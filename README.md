@@ -11,9 +11,9 @@ bun install --frozen-lockfile
 bun run dev
 bun run typecheck
 bun run lint
-bun run test
 bun run format:check
 bun run build
+bun run test
 ```
 
 `npm install` was used only to bootstrap Bun in the build environment. The committed `bun.lock` is the reproducible Bun lockfile. No runtime credentials, backend or API keys are needed.
@@ -24,7 +24,7 @@ bun run build
 - `/compare`: positioning, independently run benchmarks and coverage gaps
 - `/field-notes`: attributed launch-period reports, and detailed system-card context
 - `/sources`: searchable/filterable evidence with expandable verification notes
-- `/access`: subscription limits, $200 plan comparisons, task-value worksheets, API rates and Daybreak eligibility
+- `/access`: subscription limits, $200 plan comparisons, API rates and Daybreak eligibility
 
 The build emits dedicated `index.html` files for all four secondary routes plus a `404.html` fallback, so direct links do not depend solely on an SPA rewrite. Route bodies are lazy-loaded and native navigation links preload their route on pointer or keyboard intent. The application adds client navigation to native landing links while keeping URLs shareable. The public audience is configured through Sites, not this code.
 
@@ -35,8 +35,9 @@ The build emits dedicated `index.html` files for all four secondary routes plus 
 - TanStack Router: intent preloading, view transitions, scroll restoration and route-aware titles/focus.
 - TanStack Table **9.3.1**: official legacy adapter for a small semantic comparison table. No artificial sorting controls on a four-row comparison.
 - Tailwind CSS **4.3.5** plus a reusable custom token-based editorial system.
-- Base UI Accordion provides accessible source disclosures.
-- Motion handles restrained route entry; React `Activity` preserves hidden workload inputs when comparing plans, and React `ViewTransition` animates that change where supported.
+- Actual `cn` **0.5.2** supplies class merging for typed shared control variants, with matching semantic anchor and Base UI Button treatments.
+- Base UI Accordion provides accessible source disclosures; shared `TextField`, `ChoiceField` and `AtlasTabs` compose Field, RadioGroup and Tabs for search, pricing choices and measurement panels. See [DESIGN.md](DESIGN.md).
+- Motion handles restrained route entry; React `Activity` preserves hidden tab-panel state, and React `ViewTransition` animates that change where supported.
 - TanStack Markdown renders curated editorial notes using its React adapter, `@tanstack/markdown/react`. See the [official rendering guide](https://tanstack.com/markdown/latest/docs/guides/react).
 - OXLint **1.94.0** with `--type-aware --type-check` and `oxlint-tsgolint`; TSRS **0.25.0-ts7.1.0-beta** for independent typechecking.
 - OXFmt **0.79.0**: import sorting, package metadata sorting and Tailwind class sorting, with 100-column single-quoted formatting.
@@ -45,7 +46,7 @@ Version details are recorded in `package.json` and `bun.lock`; do not silently r
 
 ## Accessibility and motion
 
-Semantic sections, keyboard-accessible links, visible focus indicators, labeled controls, contrast-aware theme tokens and a horizontally keyboard-scrollable comparison table are intentional. System/light/dark preference and reduced-motion behavior are supported. Celestial bodies and constellation stars have hover, keyboard and tap access to their associated popovers. Orbital motion is autonomous; reduced motion freezes it. See [the design system](docs/design.md) for typography, square surfaces, shared controls, motion and disclosure behavior. Worksheet entries stay local to the page and are not sent anywhere.
+Semantic sections, keyboard-accessible links, visible focus indicators, labeled controls, contrast-aware theme tokens and a horizontally keyboard-scrollable comparison table are intentional. System/light/dark preference and reduced-motion behavior are supported. Sol, Luna, Terra and the two constellations have hover, keyboard and tap access to their associated popovers. Individual stars are artwork, not separate controls. Orbital motion is autonomous; reduced motion freezes it. See [the design system](DESIGN.md) for typography, square surfaces, shared controls, motion and disclosure behavior. The former completed-work worksheet was intentionally removed; the shared controls support evidence browsing and measurement comparisons.
 
 ## Evidence maintenance
 
@@ -53,7 +54,9 @@ Semantic sections, keyboard-accessible links, visible focus indicators, labeled 
 
 ## Validation
 
-The Node test suite checks source integrity, citation references, exact source-filter behavior and route/accessibility contracts. It is **not** a substitute for browser interaction testing. Check desktop and mobile, both color schemes, keyboard operation, reduced motion, direct route entry, back/forward navigation, source filtering and disclosures, the workload worksheets and the celestial interaction before release. Keep user-requested screenshots and short video artifacts separate from runtime assets.
+The Node suite checks source integrity, citation references, exact source-filter behavior, route/accessibility contracts and executable semantic SSR of the three shared form controls. Build before testing so production-CSS checks run rather than skip. It is **not** a substitute for browser interaction testing. Check desktop and mobile, both color schemes, keyboard operation, reduced motion, direct route entry, back/forward navigation, source filtering and disclosures, the chart panels and the celestial interaction before release. Keep user-requested screenshots and short video artifacts separate from runtime assets.
+
+Production is published only from the exact reviewed GitHub `main` tree after merge and applicable authorization. Work branches are for changes and previews, not public production deployment.
 
 ## License
 

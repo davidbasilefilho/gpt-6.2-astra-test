@@ -1,7 +1,7 @@
 import { ApiAccess } from './api-access';
 import { Page, SourceLink } from './shared';
 import { Cite } from './study-components';
-import { SubscriptionValue } from './subscription-value';
+import { ValueComparison } from './value-comparison';
 
 export default function Access() {
   return (
@@ -49,7 +49,7 @@ export default function Access() {
           </section>
         </div>
       </section>
-      <SubscriptionValue />
+      <ValueComparison />
       <ApiAccess />
       <p className="study-date">US pricing and plan rules checked November 18, 2026.</p>
     </Page>

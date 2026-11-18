@@ -1,4 +1,7 @@
+import { Meter } from '@base-ui/react/meter';
+
 import { benchmarkCheckedAt, benchmarkCoverage, benchmarkResults } from './benchmark-data.js';
+import { cn } from './design/variants';
 
 import './benchmarks.css';
 
@@ -26,25 +29,28 @@ export function Benchmarks() {
               <span className="benchmark-evaluator">Measured by {result.evaluator}</span>
             </div>
             <div className="benchmark-measurement">
-              <dl className="benchmark-values" aria-label={`${result.name} results`}>
+              <div className="benchmark-values">
                 {(['sol', 'astra'] as const).map((model) => (
-                  <div className={`benchmark-value benchmark-value--${model}`} key={model}>
-                    <dt>
+                  <Meter.Root
+                    key={model}
+                    value={result[model]}
+                    aria-valuetext={`${result[model].toFixed(1)} percent`}
+                    className={cn('benchmark-value', `benchmark-value--${model}`)}
+                  >
+                    <Meter.Label className="benchmark-label">
                       GPT-6.2 {model === 'sol' ? 'Sol' : 'Astra'}
                       <span>{model === 'sol' ? result.solEffort : result.astraEffort} effort</span>
-                    </dt>
-                    <dd>
+                    </Meter.Label>
+                    <div className="benchmark-amount" aria-hidden="true">
                       {result[model].toFixed(1)}
                       <span>%</span>
-                    </dd>
-                    <span
-                      className="benchmark-bar"
-                      aria-hidden="true"
-                      style={{ width: `${result[model]}%` }}
-                    />
-                  </div>
+                    </div>
+                    <Meter.Track className="benchmark-track">
+                      <Meter.Indicator className="benchmark-bar" />
+                    </Meter.Track>
+                  </Meter.Root>
                 ))}
-              </dl>
+              </div>
               <p className="benchmark-method">
                 {result.metric}. {result.method}.
               </p>
