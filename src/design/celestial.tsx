@@ -1,7 +1,7 @@
 import { Popover } from '@base-ui/react/popover';
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
-import { celestialPlacement, celestialDepth } from './celestial-geometry.js';
+import { celestialPlacement, celestialDepth, anchoredRect } from './celestial-geometry.js';
 import { cn } from './variants';
 
 import './celestial.css';
@@ -38,6 +38,13 @@ export function CelestialPopover({
   const dismissed = useRef<string | null>(null);
   const lastMouse = useRef(0);
   const restoreEscapeFocus = useRef(false);
+  const fixedAnchor = useRef<{
+    id: string;
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  } | null>(null);
   const pointer = useRef<{ x: number; y: number } | null>(null);
   const open = selection?.body === body;
   const active = open ? selection.trigger : lastTrigger;
@@ -85,9 +92,23 @@ export function CelestialPopover({
       const layer = positioner.current;
       const trigger = document.getElementById(active);
       if (!panel || !layer || !trigger) return;
+      // Hold the destination still for the whole disclosure. Only viewport/scroll
+      // changes may move it; the painted orbit and its trigger continue autonomously.
+      const liveAnchor = trigger.getBoundingClientRect();
+      if (!fixedAnchor.current || fixedAnchor.current.id !== active) {
+        fixedAnchor.current = {
+          id: active,
+          left: liveAnchor.left - bounds.left,
+          top: liveAnchor.top - bounds.top,
+          width: liveAnchor.width,
+          height: liveAnchor.height,
+        };
+      }
+      const fixed = fixedAnchor.current;
+      const anchor = anchoredRect(fixed, bounds);
       const placement = celestialPlacement({
         body,
-        anchor: trigger.getBoundingClientRect(),
+        anchor,
         bounds,
         width: panel.offsetWidth,
         height: panel.offsetHeight,
@@ -157,6 +178,7 @@ export function CelestialPopover({
             return;
           }
           if (next) {
+            if (!open || active !== id) fixedAnchor.current = null;
             dismissed.current = null;
             setLastTrigger(id);
             setMounted(true);
@@ -185,13 +207,14 @@ export function CelestialPopover({
             aria-label={`About ${name}${body === 'astra' ? (index === 0 ? ', northern constellation' : ', southern constellation') : ''}`}
             openOnHover
             delay={0}
-            closeDelay={180}
+            closeDelay={400}
             onFocus={(event) => {
               if (dismissed.current !== event.currentTarget.id) dismissed.current = null;
               if (
                 event.currentTarget.matches(':focus-visible') &&
                 dismissed.current !== event.currentTarget.id
               ) {
+                if (!open || active !== event.currentTarget.id) fixedAnchor.current = null;
                 setMounted(true);
                 setLastTrigger(event.currentTarget.id);
                 select({ body, trigger: event.currentTarget.id });

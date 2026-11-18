@@ -47,7 +47,7 @@ function syncPalette(value: Appearance) {
       : value;
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', root.dataset.palette === 'dark' ? '#211e26' : '#ded5c5');
+    ?.setAttribute('content', root.dataset.palette === 'dark' ? '#20232f' : '#ded5c5');
 }
 
 export function AppearanceControl() {

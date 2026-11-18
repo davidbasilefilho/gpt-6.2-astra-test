@@ -152,3 +152,29 @@
 [data-constellation-art='1'] > path {
   opacity: var(--constellation-line-alt, 0.7);
 }
+
+/* Keep the card above every hit area without raising both constellation targets. */
+.astra-focus.celestial-base,
+.astra-focus.celestial-base[data-popup-mounted],
+.orbit-focus.celestial-base,
+.orbit-focus.celestial-base[data-popup-mounted] {
+  z-index: auto;
+}
+.celestial-positioner {
+  z-index: 20;
+}
+.orbit-target {
+  min-width: 44px;
+  min-height: 44px;
+  z-index: 3;
+}
+.constellation-target {
+  z-index: 1;
+}
+.celestial-popup::before {
+  height: 26px;
+  top: -26px;
+}
+.celestial-popup[data-side='top']::before {
+  bottom: -26px;
+}

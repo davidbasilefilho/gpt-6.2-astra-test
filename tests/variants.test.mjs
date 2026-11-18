@@ -52,11 +52,14 @@ test('hero link has shared variants and explicit action colors maintain text con
     ['d58c70', '36201a'],
     ['c2b5c7', '302834'],
     ['ad9db5', '302834'],
-    ['51445c', 'f9eddf'],
-    ['62506d', 'f9eddf'],
+    ['51445c', 'f8ecda'],
+    ['62506d', 'f8ecda'],
+    ['20232f', 'f8ecda'],
+    ['20232f', 'd0c8ce'],
+    ['493d53', 'e7d9e0'],
   ];
   for (const [bg, fg] of pairs) {
-    assert.ok(css.includes('#' + bg));
+    assert.ok(css.includes('#' + bg) && css.includes('#' + fg));
     const a = luminance(bg),
       b = luminance(fg);
     assert.ok((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) >= 4.5, `${bg}/${fg}`);

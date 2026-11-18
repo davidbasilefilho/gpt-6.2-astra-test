@@ -540,7 +540,12 @@
 }
 
 /* Measured evidence and rate sheets share one ledger, in both appearances. */
+/* Keep the Access introduction and jump links on one sheet, not between two rules. */
+.atlas-sheet-access .atlas-page-heading {
+  border-block-end: 0;
+}
 .study-index {
+  border-block: 0;
   display: flex;
   column-gap: var(--space-6);
   flex-wrap: wrap;

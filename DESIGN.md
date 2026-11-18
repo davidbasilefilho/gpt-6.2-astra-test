@@ -14,16 +14,16 @@ Use variables from `design-system.css`, not copied hex values in components.
 
 | Role                  | Light                 | Dark                  |
 | --------------------- | --------------------- | --------------------- |
-| `--paper`             | `#ded5c5`             | `#211e26`             |
-| `--ink`               | `#302834`             | `#f9eddf`             |
-| `--muted`             | `#534a52`             | `#c9bfc9`             |
+| `--paper`             | `#ded5c5`             | `#20232f`             |
+| `--ink`               | `#302834`             | `#f8ecda`             |
+| `--muted`             | `#534a52`             | `#d0c8ce`             |
 | `--rule`              | `#9a8b92`             | `#6d626f`             |
 | `--accent`            | `#853921`             | `#f2a481`             |
-| `--wash`              | `#c6bfcd`             | `#352e42`             |
-| `--star` / focus      | `#49436f`             | `#b8b7f4`             |
+| `--wash`              | `#c6bfcd`             | `#3b354b`             |
+| `--star` / focus      | `#49436f`             | `#c4c1ee`             |
 | `--btn` / `--btn-ink` | `#873a22` / `#fff9f2` | `#f1ae91` / `#36201a` |
 
-The comparison spread uses its own paired ground/print/soft/rule variables. Its light-theme ground is plum `#5a5263`, not the main paper. In dark appearance those roles resolve to the dark palette. Never reuse a foreground without its intended background.
+The comparison spread uses its own paired ground/print/soft/rule variables. Its light-theme ground is plum `#5a5263`, not the main paper. The night edition distinguishes blue-black paper from its plum spread (#493d53), lit copper sunrise mark and quiet horizon. Warmth is local to the sun, not an overlay on every page. Never reuse a foreground without its intended background.
 
 - **Newsreader (`--serif`):** titles and expressive display. Roman Sol and italic Astra are typographic identities, not evidence rankings.
 - **Atkinson Hyperlegible Next (`--sans`):** reading copy, navigation, inputs, metadata and tables. Use sentence case and ordinary tracking; metadata is not a monospaced eyebrow.
@@ -96,7 +96,7 @@ Reduced motion removes autonomous orbit, perspective, spring travel and spatial 
 
 Use the principles as a review lens rather than twelve effects per element. **Staging and appeal:** let group lighting and an underline indicate the subject without competing with text. **Anticipation:** hover or focus signals an available action; it must never delay activation. **Timing and slow-in/slow-out:** celestial phases accelerate continuously; menus have distinct arrival and departure curves. **Arcs:** bodies move along dashed elliptical tracks and symbols rotate about their visible pivots. **Follow-through/overlap and secondary action:** the etched rays and star light vary gently on offset phases; these are subordinate to the orbit and grouping. **Squash/stretch and exaggeration:** compress a decorative pressed icon, not its button; use a small amount of deformation on a floating surface, never text-heavy page motion. **Straight-ahead versus pose-to-pose:** calculate the sky from elapsed time, but use interruptible start/open/end poses for interactive surfaces. **Solid drawing:** preserve silhouettes, perspective origin, layer separation and readable text.
 
-For celestial cards, resolve the vector from the **actual rendered sun** toward the untransformed popup (75%) with a secondary pointer offset (25%). Apply bounded pitch/yaw (±3°), roll (up to 0.35°) and shallow depth (up to 4px) only on a fine-pointer interaction. If the sun is at the card center, its directional contribution is zero. Keyboard, touch and reduced-motion presentations stay flat. The two constellation areas contain all 13 stars; no star opens an individual card. Verify motion over several seconds, not just its brightest single frame.
+For celestial cards, resolve the vector from the **actual rendered sun** toward the untransformed popup (75%) with a secondary pointer offset (25%). Apply bounded pitch/yaw (±1.2°), sub-degree roll and shallow depth (up to 2px) only on a fine-pointer interaction. If the sun is at the card center, its directional contribution is zero. Keyboard, touch and reduced-motion presentations stay flat. Capture the open card’s local position instead of making a reader chase a moving orbit. Keep viewport clamps and scroll flips live, a 26px hover bridge, and a short 400ms grace period when the pointer crosses the gap. The two constellation areas contain all 13 stars; no star opens an individual card. Verify motion over several seconds, not just its brightest single frame.
 
 ## Evidence before release
 

@@ -59,10 +59,22 @@ export function celestialDepth(pointer, solar, bounds, enabled) {
   const x = 0.75 * solarX + 0.25 * pointerX;
   const y = 0.75 * solarY + 0.25 * pointerY;
   return {
-    x: -y * 3,
-    y: x * 3,
-    z: x * y * 0.35,
-    depth: 4,
+    x: -y * 1.2,
+    y: x * 1.2,
+    z: x * y * 0.12,
+    depth: 2,
     origin: `${50 + x * 25}% ${50 + y * 25}%`,
+  };
+}
+
+/** Reproject a captured local anchor after scroll/resize without chasing its orbit. */
+export function anchoredRect(anchor, bounds) {
+  return {
+    left: bounds.left + anchor.left,
+    top: bounds.top + anchor.top,
+    right: bounds.left + anchor.left + anchor.width,
+    bottom: bounds.top + anchor.top + anchor.height,
+    width: anchor.width,
+    height: anchor.height,
   };
 }

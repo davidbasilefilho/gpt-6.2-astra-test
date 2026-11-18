@@ -37,10 +37,10 @@ test('celestial island renders five genuine Base UI triggers across four entitie
 test('multiaxis depth is bounded, pointer-relative and neutral on reduced/touch/keyboard', () => {
   const bounds = { left: 0, top: 0, width: 240, height: 150 };
   const depth = celestialDepth({ x: 9999, y: -9999 }, { x: -9999, y: 9999 }, bounds, true);
-  assert.equal(depth.x, 3);
-  assert.equal(depth.y, 3);
-  assert.equal(depth.z, -0.35);
-  assert.equal(depth.depth, 4);
+  assert.equal(depth.x, 1.2);
+  assert.equal(depth.y, 1.2);
+  assert.equal(depth.z, -0.12);
+  assert.equal(depth.depth, 2);
   assert.equal(depth.origin, '75% 25%');
   assert.deepEqual(celestialDepth(null, { x: 0, y: 0 }, bounds, false), {
     x: 0,
@@ -95,7 +95,7 @@ test('Base UI owns sky lifecycle and semantics while ui.js only paints', async (
     /showBody|aria-expanded|createDisclosure|querySelectorAll\('\.celestial-focus/,
   );
   assert.match(component, /openOnHover/);
-  assert.match(component, /closeDelay=\{180\}/);
+  assert.match(component, /closeDelay=\{400\}/);
   assert.match(component, /prefers-reduced-motion/);
 });
 
@@ -137,14 +137,14 @@ test('real solar direction dominates opposing pointer motion on both axes', () =
     bounds,
     true,
   );
-  assert.equal(solarLeftAbove.y, 1.5);
-  assert.equal(solarLeftAbove.x, -1.5);
+  assert.equal(solarLeftAbove.y, 0.6);
+  assert.equal(solarLeftAbove.x, -0.6);
   const solarRightBelow = celestialDepth({ x: 9999, y: 9999 }, { x: 9999, y: 9999 }, bounds, true);
-  assert.equal(solarRightBelow.y, -1.5);
-  assert.equal(solarRightBelow.x, 1.5);
+  assert.equal(solarRightBelow.y, -0.6);
+  assert.equal(solarRightBelow.x, 0.6);
   const aligned = celestialDepth({ x: 9999, y: 9999 }, { x: 120, y: 75 }, bounds, true);
-  assert.equal(aligned.y, 0.75);
-  assert.equal(aligned.x, -0.75);
+  assert.equal(aligned.y, 0.3);
+  assert.equal(aligned.x, -0.3);
 });
 
 test('solar filaments deform differentially without flash or phase resets', async () => {
@@ -159,4 +159,18 @@ test('solar filaments deform differentially without flash or phase resets', asyn
       assert.ok(Math.abs(a.opacity - b.opacity) < 0.001);
       assert.ok(Math.abs(a.angle - b.angle) < 0.02);
     }
+});
+
+test('captured anchor stays still between sky frames and reprojects through scroll', async () => {
+  const { anchoredRect } = await import('../src/design/celestial-geometry.js');
+  const anchor = { left: 80, top: 90, width: 44, height: 44 };
+  const bounds = { left: 30, top: 200 };
+  assert.deepEqual(anchoredRect(anchor, bounds), anchoredRect(anchor, bounds));
+  const scrolled = anchoredRect(anchor, { left: 30, top: -80 });
+  assert.equal(scrolled.left, 110);
+  assert.equal(scrolled.top, 10);
+  assert.equal(scrolled.bottom, 54);
+  const source = await readFile(new URL('../src/design/celestial.tsx', import.meta.url), 'utf8');
+  assert.match(source, /fixedAnchor.current.id !== active/);
+  assert.match(source, /anchor = anchoredRect\(fixed, bounds\)/);
 });
