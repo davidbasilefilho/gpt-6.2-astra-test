@@ -156,3 +156,35 @@
   vertical-align: -0.02em;
   margin-left: 0.17em;
 }
+
+/* Select prose, not controls. This never disables pointer input, focus or copying from fields. */
+:where(
+  a[href],
+  button,
+  summary,
+  label[for],
+  label:has(input[type='checkbox']),
+  label:has(input[type='radio']),
+  [role='button'],
+  [role='link'],
+  [role='tab'],
+  [role='menuitem'],
+  [role='menuitemradio'],
+  [role='menuitemcheckbox'],
+  [role='switch']
+) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+:where(
+  textarea,
+  input:not([type]),
+  input[type='text'],
+  input[type='search'],
+  input[type='url'],
+  input[type='email'],
+  [contenteditable]:not([contenteditable='false'])
+) {
+  -webkit-user-select: text;
+  user-select: text;
+}

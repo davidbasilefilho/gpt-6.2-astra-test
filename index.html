@@ -41,16 +41,28 @@
           class="ds-action"
           aria-haspopup="menu"
           aria-label="Appearance: system"
+          title="Change appearance"
           aria-expanded="false"
           aria-controls="theme-menu"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="8" />
-            <path d="M12 4a8 8 0 1 1 0 16Z" fill="currentColor" stroke="none" /></svg
-          ><span>Appearance</span><i>⌄</i>
+          <svg class="theme-phase" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+            <path
+              class="phase-rays"
+              d="M15 1.8v2.8M7.2 4.1l1.5 2.5M2.3 9.8l2.8 1M1.6 16h2.8m.7 6.1 2.4-1.5M9.5 27l1.1-2.6"
+            />
+            <circle cx="15" cy="15" r="8.9" />
+            <path
+              class="phase-night"
+              d="M15.4 6.15a8.9 8.9 0 0 1 0 17.7c4.4-4.55 4.4-13.15 0-17.7Z"
+            />
+            <path class="phase-hatch" d="M9 13.6l2.1-2.1m-2.4 5.2 5-5m-3.6 6.7 4.2-4.2" />
+          </svg>
+          <svg class="theme-chevron" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="m3.5 5.75 4.5 4.5 4.5-4.5" />
+          </svg>
         </button>
         <div id="theme-menu" class="ds-overlay" hidden>
-          <div class="theme-options" role="menu" aria-label="Appearance">
+          <div class="theme-options" data-disclosure-content role="menu" aria-label="Appearance">
             <button
               type="button"
               class="ds-action"

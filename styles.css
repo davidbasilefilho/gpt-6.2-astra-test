@@ -135,31 +135,67 @@ summary:focus-visible {
   position: relative;
 }
 #theme-trigger {
-  border: none;
-  background: none;
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: 26px 14px;
   align-items: center;
-  gap: 9px;
-  min-height: 44px;
-  padding: 4px 0 4px 8px;
-  font-size: 13px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 6px;
+  width: 66px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1;
+  isolation: isolate;
 }
-#theme-trigger svg {
-  width: 20px;
-  height: 20px;
+#theme-trigger:hover,
+#theme-trigger[aria-expanded='true'] {
+  background: color-mix(in srgb, var(--accent) 6%, var(--paper));
+  border-color: var(--accent);
+}
+#theme-trigger .theme-phase {
+  display: block;
+  width: 26px;
+  height: 26px;
+  overflow: visible;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.4;
+  stroke-width: 1.3;
+  stroke-linecap: round;
 }
-#theme-trigger i {
-  font: 17px/1 var(--sans);
+#theme-trigger .phase-rays,
+#theme-trigger .phase-hatch {
+  stroke: var(--accent);
+}
+#theme-trigger .phase-night {
+  fill: currentColor;
+  stroke-width: 0.75;
+}
+#theme-trigger .theme-chevron {
+  display: block;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  transform: rotate(0deg);
+  transition: transform var(--motion-disclose) var(--ease-spring);
+}
+#theme-trigger[aria-expanded='true'] .theme-chevron {
+  transform: rotate(180deg);
 }
 #theme-menu {
   position: absolute;
   z-index: 6;
   right: 0;
-  top: calc(100% + 9px);
+  top: calc(100% + 5px);
   width: 204px;
   padding: 6px;
   border-radius: var(--radius-surface);
@@ -211,15 +247,6 @@ summary:focus-visible {
 .theme-options button:focus-visible {
   outline: 1px solid var(--accent);
   outline-offset: -1px;
-}
-#theme-trigger {
-  border-radius: var(--radius-control);
-}
-#theme-trigger i {
-  transition: rotate var(--motion-fast) var(--ease-enter);
-}
-#theme-trigger[aria-expanded='true'] i {
-  rotate: 180deg;
 }
 .hero {
   display: grid;
@@ -701,8 +728,8 @@ summary:focus-visible {
   .frame {
     width: calc(100% - 28px);
   }
-  #theme-trigger span {
-    display: none;
+  #theme-trigger {
+    width: 60px;
   }
   .plate-controls button {
     min-width: 35px;
