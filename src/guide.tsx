@@ -47,18 +47,10 @@ export default function Guide() {
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <Page
-      chapter="01 / THE GUIDE"
-      title="Two models. Your work."
-      intro="Not a leaderboard. A starting point for deciding what deserves a place in your workflow."
-    >
+    <Page kind="guide" title="Choosing a model">
       <div className="atlas-duet">
         <section className="atlas-model atlas-sol">
-          <span className="atlas-orbit-mark" aria-hidden="true">
-            ☼
-          </span>
           <h2>Sol</h2>
-          <p className="atlas-deck">Start with the everyday.</p>
           <p>
             OpenAI positions Sol as the efficient choice for everyday work. Give it a bounded task
             and judge the artifact, not just the first response.
@@ -66,11 +58,7 @@ export default function Guide() {
           <SourceLink id="launch">Official positioning</SourceLink>
         </section>
         <section className="atlas-model atlas-astra">
-          <span className="atlas-orbit-mark" aria-hidden="true">
-            ✧
-          </span>
           <h2>Astra</h2>
-          <p className="atlas-deck">Make room for complexity.</p>
           <p>
             OpenAI positions Astra for harder professional projects. Early testers saw impressive
             capabilities alongside frustrating failures of clarity and follow-through.
@@ -83,7 +71,6 @@ export default function Guide() {
       <section className="atlas-section">
         <div className="atlas-section-head">
           <h2>A practical comparison</h2>
-          <p>Suggestions are labeled. Neither column is a guarantee.</p>
         </div>
         <section
           className="atlas-table-scroll"
@@ -125,10 +112,6 @@ export default function Guide() {
           </table>
         </section>
       </section>
-      <aside className="atlas-pullquote">
-        <p>More capability does not automatically mean less supervision.</p>
-        <span>Our reading of the launch-period evidence</span>
-      </aside>
       <div className="atlas-next">
         <Link to="/field-notes">
           Read the field notes <span>↗</span>

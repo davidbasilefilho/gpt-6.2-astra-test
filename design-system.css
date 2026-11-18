@@ -1,0 +1,158 @@
+:root {
+  --paper: #fbf7ee;
+  --ink: #302433;
+  --muted: #605662;
+  --rule: #b6aab2;
+  --accent: #a63c20;
+  --wash: #eae3ef;
+  --star: #49447c;
+  --btn: #aa4023;
+  --btn-ink: #fff9f2;
+  --serif: Newsreader, Georgia, serif;
+  --sans: 'Atkinson Next', Arial, sans-serif;
+  color-scheme: light;
+}
+:root[data-palette='dark'],
+:root[data-theme='dark'] {
+  --paper: #211e26;
+  --ink: #f9eddf;
+  --muted: #c9bfc9;
+  --rule: #6d626f;
+  --accent: #f2a481;
+  --wash: #352e42;
+  --star: #b8b7f4;
+  --btn: #f1ae91;
+  --btn-ink: #36201a;
+  color-scheme: dark;
+}
+@font-face {
+  font-family: 'Atkinson Next';
+  src: url(/assets/atkinson.woff2) format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+/* Shared UI primitives. Curves/timing mirror src/design/motion.ts; tests guard drift. */
+:root {
+  --radius-control: 0px;
+  --radius-surface: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --motion-fast: 140ms;
+  --motion-enter: 210ms;
+  --motion-disclose: 260ms;
+  --ease-enter: cubic-bezier(0.2, 0.75, 0.25, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 0.8, 0.25);
+  /* Normalized response of a damped spring: small overshoot, then settle. */
+  --ease-spring: linear(
+    0,
+    0.09 6%,
+    0.31 15%,
+    0.65 28%,
+    0.9 42%,
+    1.025 57%,
+    1.032 67%,
+    1.015 80%,
+    1
+  );
+  --surface-raised: var(--paper);
+  --surface-tint: var(--wash);
+  --edge: var(--rule);
+  --surface-shadow:
+    0 4px 0 color-mix(in srgb, var(--ink) 7%, transparent),
+    0 12px 26px color-mix(in srgb, var(--ink) 12%, transparent);
+  --focus-ring: var(--star);
+  --control-height: 44px;
+}
+.ds-action {
+  border-radius: var(--radius-control);
+  min-block-size: var(--control-height);
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-enter),
+    background-color var(--motion-fast) var(--ease-enter),
+    border-color var(--motion-fast) var(--ease-enter);
+}
+.ds-action--outline {
+  border: 1px solid var(--edge);
+  background: transparent;
+  color: var(--ink);
+}
+.ds-action--outline:hover {
+  border-color: var(--ink);
+}
+.ds-action--outline[aria-pressed='true'],
+.ds-action--primary {
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+}
+.ds-overlay {
+  color: var(--ink);
+  background: var(--surface-raised);
+  border: 1px solid var(--edge);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--surface-shadow);
+}
+.ds-disclosure {
+  overflow: hidden;
+  transition:
+    height var(--motion-disclose) var(--ease-enter),
+    opacity var(--motion-fast) var(--ease-enter);
+  height: var(--accordion-panel-height);
+  opacity: 1;
+}
+.ds-disclosure[data-starting-style],
+.ds-disclosure[data-ending-style] {
+  height: 0;
+  opacity: 0;
+}
+.ds-disclosure[data-ending-style] {
+  transition-timing-function: var(--ease-exit);
+}
+.ds-action:focus-visible,
+.ds-input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+.ds-input {
+  border-radius: var(--radius-control);
+  min-height: var(--control-height);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-enter: 0ms;
+    --motion-disclose: 0ms;
+  }
+  .ds-disclosure,
+  .ds-action {
+    transition: none;
+  }
+  .ds-overlay {
+    animation: none;
+  }
+}
+
+.ds-action--primary,
+.primary.ds-action--primary,
+.atlas-button.ds-action--primary {
+  background: var(--btn);
+  color: var(--btn-ink);
+  border-color: var(--btn);
+}
+.atlas-page h1[tabindex='-1']:focus-visible {
+  outline: none;
+}
+.ds-external {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: -0.02em;
+  margin-left: 0.17em;
+}

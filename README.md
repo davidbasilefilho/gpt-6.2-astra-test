@@ -45,7 +45,7 @@ Version details are recorded in `package.json` and `bun.lock`; do not silently r
 
 ## Accessibility and motion
 
-Semantic sections, keyboard-accessible links, visible focus indicators, labeled controls, contrast-aware theme tokens and a horizontally keyboard-scrollable comparison table are intentional. System/light/dark preference and reduced-motion behavior are supported. The celestial experience is decorative; all editorial content and actions remain available without using the pointer effects. The checklist is session-local and is not sent anywhere.
+Semantic sections, keyboard-accessible links, visible focus indicators, labeled controls, contrast-aware theme tokens and a horizontally keyboard-scrollable comparison table are intentional. System/light/dark preference and reduced-motion behavior are supported. Two celestial bodies open the same popovers with hover, keyboard focus or tap. Orbital motion is autonomous; reduced motion freezes it. See [the design system](docs/design.md) for typography, square surfaces, shared controls, motion and disclosure behavior. The checklist is session-local and is not sent anywhere.
 
 ## Evidence maintenance
 

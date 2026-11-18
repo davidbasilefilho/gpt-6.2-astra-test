@@ -23,3 +23,5 @@ Preserve reusable tokens and component primitives. Keep the celestial interactio
 ## Scope and delivery
 
 Use cloud capabilities for work that does not depend on the user's computer. No secrets, credentials, personal exports, dependency directories or private source material in commits. Original project code is Apache-2.0, copyright 2026 David Basile Filho; retain third-party notices and licenses. Publish only after the applicable checks and verified deployment outcome. Never describe a pending deployment as live.
+
+Use the shared system documented in `docs/design.md`. Use square control/surface tokens, Atkinson Hyperlegible Next for interface text and metadata, the shared overlay/disclosure primitives and motion timings. Do not add arbitrary chapter labels or recreate the old mode switcher, pause button or figure caption. Check that the moving targets remain usable without a mouse and respect reduced motion.

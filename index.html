@@ -9,10 +9,7 @@
       content="An independent field guide to GPT-6.2 Sol and Astra: how they differ, what early testers found, and where subscribers can use them."
     />
     <meta property="og:title" content="Sol & Astra | Field Atlas" />
-    <meta
-      property="og:description"
-      content="Two models. Two different ways to work. An independent field guide to GPT-6.2."
-    />
+    <meta property="og:description" content="An independent guide to GPT-6.2 Sol and Astra." />
     <meta property="og:type" content="website" />
     <title>Sol &amp; Astra | Field Atlas</title>
     <link rel="icon" href="/assets/mark.svg" />
@@ -24,6 +21,7 @@
       } catch {}
     </script>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/design-system.css" />
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
@@ -40,6 +38,8 @@
         <button
           type="button"
           id="theme-trigger"
+          class="ds-action"
+          aria-haspopup="menu"
           aria-label="Appearance: system"
           aria-expanded="false"
           aria-controls="theme-menu"
@@ -49,12 +49,60 @@
             <path d="M12 4a8 8 0 1 1 0 16Z" fill="currentColor" stroke="none" /></svg
           ><span>Appearance</span><i>⌄</i>
         </button>
-        <div id="theme-menu" hidden>
-          <div class="menu-title">Appearance</div>
-          <div class="theme-options" role="group" aria-label="Choose appearance">
-            <button data-theme-choice="system">System</button
-            ><button data-theme-choice="light">Light</button
-            ><button data-theme-choice="dark">Dark</button>
+        <div id="theme-menu" class="ds-overlay" hidden>
+          <div class="theme-options" role="menu" aria-label="Appearance">
+            <button
+              type="button"
+              class="ds-action"
+              data-theme-choice="system"
+              role="menuitemradio"
+              aria-checked="true"
+              tabindex="0"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="13" />
+                <path d="M8 21h8M12 17v4" />
+              </svg>
+              <span>System</span
+              ><svg class="choice-check" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 12 4 4 10-10" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="ds-action"
+              data-theme-choice="light"
+              role="menuitemradio"
+              aria-checked="false"
+              tabindex="-1"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+                />
+              </svg>
+              <span>Light</span
+              ><svg class="choice-check" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 12 4 4 10-10" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="ds-action"
+              data-theme-choice="dark"
+              role="menuitemradio"
+              aria-checked="false"
+              tabindex="-1"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" />
+              </svg>
+              <span>Dark</span
+              ><svg class="choice-check" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 12 4 4 10-10" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -64,15 +112,11 @@
       <section class="hero frame">
         <div class="hero-copy">
           <h1>Sol <span class="amp">&amp;</span><br /><em>Astra</em></h1>
-          <p class="lead">
-            Two models. Two different<br class="wide-only" />
-            ways to work.
-          </p>
           <p class="intro">
             An independent field guide to GPT-6.2: what the models promise, where testers disagree,
             and how to choose.
           </p>
-          <a class="primary" href="/compare"
+          <a class="primary ds-action ds-action--primary" href="/compare"
             >Compare the models <span aria-hidden="true">→</span></a
           >
         </div>
@@ -138,10 +182,14 @@
                   <use href="#spark" transform="translate(579 355) scale(.6)" />
                 </g>
                 <g class="orbit-ink">
-                  <circle cx="124" cy="369" r="12" fill="var(--paper)" />
-                  <circle cx="124" cy="369" r="11" fill="url(#crosshatch)" />
-                  <circle cx="592" cy="142" r="7" fill="var(--paper)" />
-                  <circle cx="592" cy="142" r="6" fill="url(#crosshatch)" />
+                  <g id="orbiter-near" transform="translate(124 369)">
+                    <circle r="12" fill="var(--paper)" />
+                    <circle r="11" fill="url(#crosshatch)" />
+                  </g>
+                  <g id="orbiter-far" transform="translate(592 142)">
+                    <circle r="7" fill="var(--paper)" />
+                    <circle r="6" fill="url(#crosshatch)" />
+                  </g>
                 </g>
                 <g id="dust"></g>
               </svg>
@@ -151,45 +199,52 @@
             </div>
           </div>
           <div class="plate-hitlayer">
-            <button
-              type="button"
-              data-pick="sol"
-              class="planet-target sol-target"
-              aria-label="Focus on Sol"
-              aria-pressed="false"
-            ></button
-            ><button
-              type="button"
-              data-pick="astra"
-              class="planet-target astra-target"
-              aria-label="Focus on Astra"
-              aria-pressed="false"
-            ></button>
+            <div class="celestial-focus sol-focus" data-body="sol">
+              <button
+                type="button"
+                class="planet-target"
+                aria-label="About Sol"
+                aria-expanded="false"
+                aria-controls="sol-popover"
+              ></button>
+              <div
+                class="body-popover ds-overlay"
+                id="sol-popover"
+                role="region"
+                aria-label="Sol"
+                hidden
+              >
+                <h2>Sol</h2>
+                <p>OpenAI’s model for everyday professional work.</p>
+                <a href="/compare">Compare the models</a>
+              </div>
+            </div>
+            <div class="celestial-focus astra-focus" data-body="astra">
+              <button
+                type="button"
+                class="planet-target"
+                aria-label="About Astra"
+                aria-expanded="false"
+                aria-controls="astra-popover"
+              ></button>
+              <span class="astra-companion-hit" aria-hidden="true"></span>
+              <div
+                class="body-popover ds-overlay"
+                id="astra-popover"
+                role="region"
+                aria-label="Astra"
+                hidden
+              >
+                <h2>Astra</h2>
+                <p>OpenAI’s model for harder professional projects.</p>
+                <a href="/compare">Compare the models</a>
+              </div>
+            </div>
           </div>
-          <div class="plate-controls" role="group" aria-label="Choose chart focus">
-            <button type="button" data-pick="overview" aria-pressed="true">Both</button
-            ><button type="button" data-pick="sol" aria-pressed="false">Sol</button
-            ><button type="button" data-pick="astra" aria-pressed="false">Astra</button>
-          </div>
-          <figcaption>
-            <span class="figure-n">Fig. 1</span
-            ><span id="plate-caption" aria-live="polite"
-              >The Sol–Astra system. Select a body to study its orbit.</span
-            ><button
-              type="button"
-              id="motion-toggle"
-              aria-label="Pause chart motion"
-              title="Pause chart motion"
-              aria-pressed="false"
-            >
-              Ⅱ
-            </button>
-          </figcaption>
         </figure>
       </section>
       <section class="spread">
         <div class="frame">
-          <div class="spread-rule">The field guide <span></span> Issue 01</div>
           <div class="spread-grid">
             <div>
               <h2>At a glance</h2>
@@ -215,7 +270,6 @@
       <section class="reading frame">
         <div>
           <h2>Further reading</h2>
-          <p>The release, read from three angles.</p>
         </div>
         <div class="reading-list">
           <a href="/field-notes"
