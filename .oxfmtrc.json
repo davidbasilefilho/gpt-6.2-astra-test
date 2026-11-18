@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "sortImports": {},
+  "sortPackageJson": true,
+  "sortTailwindcss": {},
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    "vendor/**",
+    ".openai/**",
+    ".claude/skills/frontend-design/**"
+  ]
+}
