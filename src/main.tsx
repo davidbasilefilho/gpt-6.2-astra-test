@@ -10,9 +10,10 @@ import {
 import { useLayoutEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { AppearanceControl } from './design/appearance';
+import { CelestialPlateControls } from './design/celestial';
 import { watchEntrances } from './design/entrances';
 import { bindRouteOrigins } from './design/origins';
-import { AppearanceTooltip } from './design/tooltip';
 
 import './routes.css';
 bindRouteOrigins();
@@ -120,13 +121,11 @@ document.addEventListener('click', (event) => {
   void router.navigate({ to: url.pathname });
 });
 const mount = document.getElementById('atlas-react-root');
-if (mount)
-  createRoot(mount).render(
-    <>
-      <RouterProvider router={router} />
-      <AppearanceTooltip />
-    </>,
-  );
+if (mount) createRoot(mount).render(<RouterProvider router={router} />);
+const appearance = document.getElementById('appearance-root');
+if (appearance) createRoot(appearance).render(<AppearanceControl />);
+const controls = document.getElementById('celestial-controls');
+if (controls) createRoot(controls).render(<CelestialPlateControls />);
 
 function preloadNativeLink(event: Event) {
   if (!(event.target instanceof Element)) return;

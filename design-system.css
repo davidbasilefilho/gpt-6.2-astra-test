@@ -210,8 +210,7 @@
 
 .ds-overlay,
 .ds-tooltip,
-.popover-surface,
-.study-worksheet {
+.popover-surface {
   background-image: var(--film-grain);
   background-size: var(--grain-size);
 }
@@ -229,4 +228,151 @@
 .ds-disclosure-mark {
   transform-box: view-box;
   transform-origin: 50% 50%;
+}
+
+/* Shared action state palette. Explicit pairs make hover a visible ink change. */
+:root {
+  --action-hover: #a84a2b;
+  --action-active: #662b1a;
+  --action-hover-ink: #fff9f2;
+  --action-neutral-hover: #c2b5c7;
+  --action-neutral-active: #ad9db5;
+}
+:root[data-palette='dark'],
+:root[data-theme='dark'] {
+  --action-hover: #ffd2b5;
+  --action-active: #d58c70;
+  --action-hover-ink: #36201a;
+  --action-neutral-hover: #51445c;
+  --action-neutral-active: #62506d;
+}
+.ds-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition:
+    color var(--motion-fast) var(--ease-enter),
+    background-color var(--motion-fast) var(--ease-enter),
+    border-color var(--motion-fast) var(--ease-enter);
+}
+.ds-size--sm {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.ds-size--md {
+  min-height: 46px;
+  padding: 10px 14px;
+  font-size: 16px;
+}
+.ds-size--lg {
+  min-height: 48px;
+  padding: 12px 20px;
+  font-size: 16px;
+}
+.ds-size--icon {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+}
+.ds-action.ds-action--default,
+.primary.ds-action--default {
+  background: var(--btn);
+  color: var(--btn-ink);
+  border: 1px solid var(--btn);
+}
+.ds-action.ds-action--default.ds-tone--neutral {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.ds-action.ds-action--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid transparent;
+}
+.ds-action.ds-action--outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+}
+.ds-action.ds-action--default:not(:disabled, [data-disabled], [aria-disabled='true']):is(
+    :hover,
+    [data-highlighted]
+  ),
+.primary.ds-action--default:not([aria-disabled='true']):hover {
+  background: var(--action-hover);
+  color: var(--action-hover-ink);
+  border-color: var(--action-hover);
+}
+.ds-action.ds-action--default:not(:disabled, [data-disabled], [aria-disabled='true']):active {
+  background: var(--action-active);
+  color: var(--action-hover-ink);
+  border-color: var(--action-active);
+}
+.ds-action:is(.ds-action--outline, .ds-action--ghost):not(
+    :disabled,
+    [data-disabled],
+    [aria-disabled='true']
+  ):is(:hover, [data-highlighted]),
+#theme-trigger:not(:disabled):hover,
+.atlas-source-trigger:not(:disabled):hover {
+  background: var(--action-neutral-hover);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.ds-action:is(.ds-action--outline, .ds-action--ghost):not(
+    :disabled,
+    [data-disabled],
+    [aria-disabled='true']
+  ):active {
+  background: var(--action-neutral-active);
+  color: var(--ink);
+}
+.ds-action:is(.ds-action--outline, .ds-action--ghost):is(
+    [aria-pressed='true'],
+    [data-active],
+    [data-checked]
+  ) {
+  background: var(--wash);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.ds-action:is(:disabled, [data-disabled], [aria-disabled='true']) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.atlas-source-trigger {
+  transition:
+    color var(--motion-fast) var(--ease-enter),
+    background-color var(--motion-fast) var(--ease-enter);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-action,
+  .atlas-source-trigger {
+    transition: none;
+  }
+}
+
+/* Pressure affects the drawn affordance, never the control's target or label. */
+.ds-action > .ds-icon:not(.theme-chevron),
+.ds-action > .ds-disclosure-mark {
+  scale: 1 1;
+  transform-origin: center;
+  transition: scale var(--motion-disclose) var(--ease-spring);
+}
+.ds-action:not(:disabled, [data-disabled], [aria-disabled='true']):active
+  > .ds-icon:not(.theme-chevron),
+.ds-action:not(:disabled, [data-disabled], [aria-disabled='true']):active > .ds-disclosure-mark {
+  scale: 1.04 0.94;
+  transition-duration: var(--motion-fast);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-action > .ds-icon:not(.theme-chevron),
+  .ds-action > .ds-disclosure-mark {
+    scale: none !important;
+    transition: none;
+  }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { rateFor, tiers } from './api-rates.js';
 import { ChoiceField } from './design/forms';
+import { ScrollableLedger } from './design/scrollable-ledger';
 import { Cite } from './study-components';
 export function ApiAccess() {
   const [model, setModel] = useState('Sol');
@@ -33,7 +34,7 @@ export function ApiAccess() {
             ]}
           />
         </div>
-        <section className="study-rate-table" aria-label="Token prices" tabIndex={0}>
+        <ScrollableLedger className="study-rate-table" label="Token prices">
           <table>
             <caption>
               {model} · {longContext ? 'long' : 'short'} context · USD per 1M
@@ -72,7 +73,7 @@ export function ApiAccess() {
               ))}
             </tbody>
           </table>
-        </section>
+        </ScrollableLedger>
         <p className="atlas-caveat">
           Above 272,000 input tokens, the higher rate applies to the whole request. Ultrafast launch
           rates last through February 28, 2027 (Pacific); list rates start March 1. Background

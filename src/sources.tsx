@@ -4,7 +4,9 @@ import { useState } from 'react';
 
 import { checkedAt, sources } from '../evidence.js';
 import { ChoiceField, TextField } from './design/forms';
+import { UiIcon } from './design/icons';
 import { timing, easeEnter, easeExit } from './design/motion';
+import { cn, controlVariants } from './design/variants';
 import { filterSources } from './evidence-filter.js';
 import { ExternalMark, Page, SourceLink, type Source } from './shared';
 const sourceTypes = ['All', 'Official', 'Independent'] as const;
@@ -57,16 +59,19 @@ export default function Sources() {
             >
               <Accordion.Item className="atlas-source" key={source.id} value={source.id}>
                 <Accordion.Header>
-                  <Accordion.Trigger className="atlas-source-trigger">
+                  <Accordion.Trigger
+                    className={cn(
+                      controlVariants({ variant: 'ghost', tone: 'neutral', size: 'lg' }),
+                      'atlas-source-trigger',
+                    )}
+                  >
                     <span>
                       <span className="atlas-source-meta">
                         {source.author} / {source.type}
                       </span>
                       <span className="atlas-source-title">{source.title}</span>
                     </span>
-                    <span className="atlas-source-plus" aria-hidden="true">
-                      +
-                    </span>
+                    <UiIcon name="plus" className="atlas-source-plus" />
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Panel className="ds-disclosure">

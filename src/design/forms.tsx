@@ -5,6 +5,8 @@ import { Tabs } from '@base-ui/react/tabs';
 import { useReducedMotion } from 'motion/react';
 import { Activity, startTransition, useId, useState, ViewTransition, type ReactNode } from 'react';
 
+import { cn, controlVariants } from './variants';
+
 import './forms.css';
 
 export function TextField({
@@ -20,7 +22,7 @@ export function TextField({
   errorMessage?: string;
 }) {
   return (
-    <Field.Root className={`ds-field ${className}`} validationMode="onBlur">
+    <Field.Root className={cn('ds-field', className)} validationMode="onBlur">
       <Field.Label className="ds-field-label">{label}</Field.Label>
       <Field.Control className="ds-field-input" {...props} />
       {errorMessage && <Field.Error className="ds-field-error">{errorMessage}</Field.Error>}
@@ -55,7 +57,10 @@ export function ChoiceField<T extends string>({
         onValueChange={onValueChange}
       >
         {options.map((option) => (
-          <label className="ds-choice" key={option.value}>
+          <label
+            className={cn(controlVariants({ variant: 'outline', tone: 'neutral' }), 'ds-choice')}
+            key={option.value}
+          >
             <Radio.Root className="ds-radio" value={option.value} aria-label={option.label}>
               <Radio.Indicator className="ds-radio-indicator" />
             </Radio.Root>
@@ -67,7 +72,7 @@ export function ChoiceField<T extends string>({
   );
 }
 
-export function WorksheetTabs({
+export function AtlasTabs({
   label,
   items,
 }: {
@@ -78,13 +83,20 @@ export function WorksheetTabs({
   const reduced = useReducedMotion();
   return (
     <Tabs.Root
-      className="ds-worksheet-tabs"
+      className="ds-atlas-tabs"
       value={value}
       onValueChange={(next) => startTransition(() => setValue(String(next)))}
     >
       <Tabs.List className="ds-tab-list" aria-label={label} activateOnFocus>
         {items.map((item) => (
-          <Tabs.Tab className="ds-tab" key={item.value} value={item.value}>
+          <Tabs.Tab
+            className={cn(
+              controlVariants({ variant: 'ghost', tone: 'neutral', size: 'lg' }),
+              'ds-tab',
+            )}
+            key={item.value}
+            value={item.value}
+          >
             {item.label}
           </Tabs.Tab>
         ))}

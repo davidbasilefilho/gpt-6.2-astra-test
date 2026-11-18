@@ -105,7 +105,7 @@
 .ds-radio:focus-visible {
   outline: none;
 }
-.ds-worksheet-tabs {
+.ds-atlas-tabs {
   max-width: 680px;
   margin: 24px 0;
 }
@@ -167,16 +167,6 @@
   outline: 2px solid var(--focus-ring);
   outline-offset: 4px;
 }
-.study-worksheet .ds-field {
-  grid-template-columns: minmax(0, 1fr) minmax(110px, 0.55fr);
-  align-items: center;
-  gap: 12px;
-  margin: 13px 0;
-}
-.study-worksheet .ds-field-label {
-  display: block;
-  margin: 0;
-}
 .ds-pricing-controls {
   display: flex;
   flex-wrap: wrap;
@@ -196,11 +186,6 @@
     flex: 1;
     padding-inline: 10px;
   }
-  .study-worksheet .ds-field {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
-    margin-block: 18px;
-  }
   .atlas-source-tools .ds-field {
     max-width: none;
   }
@@ -214,38 +199,6 @@
   }
 }
 
-.ds-tab-panel .study-worksheet {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-}
-.ds-tab-panel .study-worksheet legend {
-  padding: 0;
-  margin-bottom: 8px;
-  font: 500 18px/1.4 var(--sans);
-}
-.ds-tab-panel .study-worksheet output {
-  border: 0;
-  margin-top: 24px;
-  padding: 16px;
-  background: color-mix(in srgb, var(--wash) 45%, transparent);
-}
-.ds-tab-panel .study-worksheet {
-  min-width: 0;
-}
-.ds-tab-panel .study-worksheet output {
-  display: grid;
-  gap: 4px;
-  min-height: 72px;
-  font: 15px/1.5 var(--sans);
-}
-.ds-tab-panel .study-worksheet output b {
-  color: var(--accent);
-  font-size: 19px;
-  font-weight: 600;
-}
-
 .ds-field-error {
   grid-column: 1 / -1;
   color: var(--accent);
@@ -257,5 +210,29 @@
 @media (max-width: 520px) {
   .ds-tab-list {
     display: flex;
+  }
+}
+
+/* Selection materializes at its own center; the surrounding 46px target stays still. */
+.ds-radio-indicator {
+  transform-origin: center;
+  scale: 1;
+  opacity: 1;
+  transition:
+    scale var(--motion-enter) var(--ease-enter),
+    opacity var(--motion-fast) var(--ease-enter);
+}
+.ds-radio-indicator[data-starting-style],
+.ds-radio-indicator[data-ending-style] {
+  scale: 0.72;
+  opacity: 0;
+}
+.ds-radio-indicator[data-ending-style] {
+  transition-timing-function: var(--ease-exit);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ds-radio-indicator {
+    transition: none;
+    scale: none;
   }
 }

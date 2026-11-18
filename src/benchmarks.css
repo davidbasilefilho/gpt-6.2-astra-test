@@ -46,23 +46,26 @@
   gap: 24px;
   margin: 0 0 16px;
 }
-.benchmark-value dt {
+.benchmark-label {
   font-size: 15px;
   line-height: 1.5;
 }
-.benchmark-value dt span {
+.benchmark-label span {
   display: block;
   font-size: 13px;
   color: var(--muted);
 }
-.benchmark-value dd {
+.benchmark-amount {
   font: 450 clamp(38px, 4.5vw, 55px)/1.25 var(--serif);
   font-variant-numeric: tabular-nums;
   margin: 6px 0;
 }
-.benchmark-value dd span {
+.benchmark-amount span {
   font-size: 0.55em;
   margin-left: 2px;
+}
+.benchmark-track {
+  height: 4px;
 }
 .benchmark-bar {
   transform-origin: left center;

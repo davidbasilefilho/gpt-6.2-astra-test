@@ -276,9 +276,6 @@
 .atlas-section-head {
   margin: 0 0 12px;
 }
-.atlas-table-scroll {
-  overflow-x: auto;
-}
 .atlas-table {
   border-collapse: collapse;
   width: 100%;
@@ -616,7 +613,6 @@
 }
 .study-rate-table {
   max-width: 100%;
-  overflow: auto;
   margin: 12px 0;
 }
 .study-rate-table table {
@@ -824,4 +820,34 @@
 }
 .ds-disclosure {
   transform-origin: center top;
+}
+
+.ds-scroll-ledger {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+}
+.ds-ledger-viewport {
+  max-width: 100%;
+  overscroll-behavior-x: contain;
+}
+.ds-ledger-viewport[data-has-overflow-x] {
+  padding-block-end: 12px;
+}
+.ds-ledger-bar {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  align-items: center;
+  background: var(--paper);
+  touch-action: none;
+  user-select: none;
+}
+.ds-ledger-thumb {
+  min-width: 24px;
+  height: 5px;
+  background: var(--muted);
 }
