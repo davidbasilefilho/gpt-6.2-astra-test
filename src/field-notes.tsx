@@ -1,7 +1,7 @@
+import { Markdown } from '@tanstack/markdown/react';
 import { Link } from '@tanstack/react-router';
 import { useReducedMotion } from 'motion/react';
 import { Activity, startTransition, useState, ViewTransition } from 'react';
-import Markdown from 'react-markdown';
 
 import { fieldTest } from '../evidence.js';
 import { Page, SourceLink, sourceById } from './shared';

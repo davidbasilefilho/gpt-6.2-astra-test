@@ -37,7 +37,7 @@ The build emits dedicated `index.html` files for all four secondary routes plus 
 - Tailwind CSS **4.3.5** plus a reusable custom token-based editorial system.
 - Base UI Accordion provides accessible source disclosures.
 - Motion handles restrained route entry; React `Activity` preserves a hidden checklist, and React `ViewTransition` animates that change where supported.
-- `react-markdown` renders curated editorial Markdown. **There is no `@tanstack/react-markdown` package in the registry** (checked 18 November 2026), so this is not claimed as a TanStack Markdown integration.
+- TanStack Markdown renders curated editorial notes using its React adapter, `@tanstack/markdown/react`. See the [official rendering guide](https://tanstack.com/markdown/latest/docs/guides/react).
 - OXLint **1.94.0** with `--type-aware --type-check` and `oxlint-tsgolint`; TSRS **0.25.0-ts7.1.0-beta** for independent typechecking.
 - OXFmt **0.79.0**: import sorting, package metadata sorting and Tailwind class sorting, with 100-column single-quoted formatting.
 
